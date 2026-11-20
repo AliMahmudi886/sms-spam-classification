@@ -68,10 +68,23 @@ For the exact Python 3.12 environment used for the reported results, install fro
 
 Training stores the fitted demo model under `models/`, raw cross-validation output under `reports/generated/`, and refreshes the human-readable report at `reports/RESULTS.md`. Raw data, model files, and machine-generated JSON are excluded from Git so they can be recreated from the documented source and commands.
 
+## Run with Docker
+
+Docker builds the locked Python environment, downloads the checksum-verified public corpus, runs the documented cross-validation experiment, and trains the demo model before starting Streamlit.
+
+```bash
+docker build -t sms-spam-classifier .
+docker run --rm -p 8501:8501 sms-spam-classifier
+```
+
+Open `http://localhost:8501` in your browser. The image build needs network access to download packages and the public UCI dataset. The Docker image is not published by this repository.
+
 ## Repository map
 
 ```text
 app.py                     Streamlit message classifier
+Dockerfile                 Container image and local app startup
+.dockerignore              Keep local data and environments out of image builds
 src/pipeline.py            Data loading, duplicate handling, models, metrics
 src/train.py               Five-fold evaluation, final demo-model fit, report generation
 scripts/download_data.py   Download and verify the official UCI data file
