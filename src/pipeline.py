@@ -108,3 +108,49 @@ def score_predictions(y_true: list[str] | pd.Series, y_pred: list[str]) -> dict[
         "accuracy": float(accuracy_score(y_true, y_pred)),
         "confusion_matrix_labels_ham_spam": confusion_matrix(y_true, y_pred, labels=LABELS).tolist(),
     }
+
+
+def logistic_feature_contributions(
+    model: Pipeline, message: str, top_k: int = 5
+) -> dict[str, list[dict[str, float | str]]]:
+    """Return the largest signed TF-IDF contributions to Logistic Regression's spam logit.
+
+    These values decompose the fitted linear score over observed features. They are
+    not causal or semantic explanations of why a message is spam.
+    """
+    if top_k < 1:
+        raise ValueError("top_k must be a positive integer")
+
+    vectorizer = model.named_steps["tfidf"]
+    classifier = model.named_steps["classifier"]
+    if not hasattr(classifier, "coef_"):
+        raise TypeError("Feature contributions are available only for a linear classifier.")
+
+    classes = list(classifier.classes_)
+    if "spam" not in classes:
+        raise ValueError("The fitted model does not contain the spam class.")
+    spam_coefficients = classifier.coef_[0]
+    if classes.index("spam") == 0:
+        spam_coefficients = -spam_coefficients
+
+    vector = vectorizer.transform([message])
+    contributions = vector.multiply(spam_coefficients).tocoo()
+    feature_names = vectorizer.get_feature_names_out()
+    signed = [
+        (str(feature_names[index]), float(value))
+        for index, value in zip(contributions.col, contributions.data)
+        if value != 0
+    ]
+    positive = sorted((item for item in signed if item[1] > 0), key=lambda item: item[1], reverse=True)
+    negative = sorted((item for item in signed if item[1] < 0), key=lambda item: item[1])
+
+    return {
+        "toward_spam": [
+            {"feature": feature, "logit_contribution": value}
+            for feature, value in positive[:top_k]
+        ],
+        "toward_ham": [
+            {"feature": feature, "logit_contribution": value}
+            for feature, value in negative[:top_k]
+        ],
+    }

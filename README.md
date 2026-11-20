@@ -12,6 +12,7 @@ A reproducible text-classification study and local Streamlit demo for labeling E
 - Two classical text models: Multinomial Naive Bayes and Logistic Regression with TF-IDF word unigrams and bigrams.
 - Stratified five-fold cross-validation, out-of-fold metrics, fold-level variation, and confusion matrices.
 - A small local app for entering a message and viewing a model prediction with clear limitations.
+- A linear TF-IDF feature contribution view and a concise [Model Card](docs/MODEL_CARD.md) describing intended use and limitations.
 
 ## Research question
 
@@ -30,6 +31,8 @@ The table shows pooled out-of-fold metrics. Fold F1 is the mean and sample stand
 | Logistic Regression | 0.998 | 0.677 | 0.807 | 0.806 ± 0.020 | 0.959 |
 
 See [reports/RESULTS.md](reports/RESULTS.md) for per-fold metrics and confusion matrices. These measurements describe this historical corpus and cross-validation setup; fold standard deviation is not a confidence interval, and cross-validation does not establish performance on current messages, other languages, or scam detection.
+
+The app can display signed TF-IDF feature contributions for its Logistic Regression prediction. These values decompose the model's linear score; they are not causal or semantic explanations. See the [Model Card](docs/MODEL_CARD.md) for intended use and additional limitations.
 
 ## Workflow
 
@@ -90,6 +93,7 @@ src/train.py               Five-fold evaluation, final demo-model fit, report ge
 scripts/download_data.py   Download and verify the official UCI data file
 requirements.lock          Exact environment used for the reported experiment
 docs/EXPERIMENT.md         Research question and evaluation protocol
+docs/MODEL_CARD.md         Intended use, evaluation, and model limitations
 docs/RESUME_AND_INTERVIEW.md Honest resume and interview wording
 reports/RESULTS.md         Measured cross-validation results
 DATASET.md                 Citation, license, provenance, and inspection record

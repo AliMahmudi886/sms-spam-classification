@@ -8,6 +8,8 @@ from pathlib import Path
 import joblib
 import streamlit as st
 
+from src.pipeline import logistic_feature_contributions
+
 
 ROOT = Path(__file__).resolve().parent
 MODEL_PATH = ROOT / "models" / "logistic_regression.joblib"
@@ -73,6 +75,32 @@ elif submitted:
         "These are uncalibrated model probabilities, not verified risk scores. A low spam score "
         "does not prove a message is safe."
     )
+
+    with st.expander("Inspect largest feature contributions"):
+        st.caption(
+            "These values show how observed TF-IDF features add to or subtract from this linear "
+            "model's spam score. They are not causal or semantic explanations, and depend on the "
+            "training corpus."
+        )
+        contributions = logistic_feature_contributions(model, message)
+        spam_col, ham_col = st.columns(2)
+        if not contributions["toward_spam"] and not contributions["toward_ham"]:
+            st.write("No message terms appeared in the fitted model vocabulary.")
+        else:
+            with spam_col:
+                st.markdown("**Toward spam**")
+                if contributions["toward_spam"]:
+                    for item in contributions["toward_spam"]:
+                        st.write(f"`{item['feature']}` (+{item['logit_contribution']:.3f})")
+                else:
+                    st.write("No observed features contributed toward spam.")
+            with ham_col:
+                st.markdown("**Toward ham**")
+                if contributions["toward_ham"]:
+                    for item in contributions["toward_ham"]:
+                        st.write(f"`{item['feature']}` ({item['logit_contribution']:.3f})")
+                else:
+                    st.write("No observed features contributed toward ham.")
 
 if cv_f1 is not None:
     st.metric("Cross-validation F1 for spam", f"{cv_f1:.3f}")
