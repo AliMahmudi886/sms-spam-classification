@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import re
 from pathlib import Path
 
@@ -15,6 +16,7 @@ from sklearn.pipeline import Pipeline
 
 LABELS = ["ham", "spam"]
 DATA_PATH = Path(__file__).resolve().parents[1] / "data" / "raw" / "SMSSpamCollection"
+EXPECTED_DATA_SHA256 = "7d039a24a6083ed9ef0f806ebad56bbb976e3aeb8de05669173bfdc4996c239d"
 
 
 def load_messages(path: Path = DATA_PATH) -> tuple[pd.DataFrame, dict[str, int]]:
@@ -22,6 +24,12 @@ def load_messages(path: Path = DATA_PATH) -> tuple[pd.DataFrame, dict[str, int]]
     if not path.is_file():
         raise FileNotFoundError(
             f"Dataset not found at {path}. Run `python scripts/download_data.py` first."
+        )
+    checksum = hashlib.sha256(path.read_bytes()).hexdigest()
+    if checksum != EXPECTED_DATA_SHA256:
+        raise ValueError(
+            "Dataset checksum differs from the documented UCI corpus. "
+            "Review DATASET.md before training on a changed file."
         )
 
     records = []

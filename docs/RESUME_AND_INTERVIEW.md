@@ -2,10 +2,10 @@
 
 ## Resume bullet
 
-Built a reproducible English SMS spam classification study and Streamlit demo using the UCI SMS Spam Collection; compared a rule-based baseline, Multinomial Naive Bayes, and Logistic Regression with a stratified holdout, spam-class precision/recall/F1, and confusion matrices. On the documented split, Logistic Regression achieved spam precision 1.000, recall 0.656, and F1 0.793. Results are limited to one split of a historical spam/ham dataset.
+Built a reproducible English SMS spam classification study and Streamlit demo using the UCI SMS Spam Collection; compared a transparent rule baseline with Multinomial Naive Bayes and Logistic Regression using stratified five-fold cross-validation, out-of-fold precision/recall/F1, fold-level variation, and confusion matrices. Logistic Regression reached pooled out-of-fold spam precision 0.998, recall 0.677, and F1 0.807; mean fold F1 was 0.806 ± 0.020. See [reports/RESULTS.md](../reports/RESULTS.md) for the full method and limits.
 
 ## Short interview explanation
 
-“I built a small end-to-end SMS spam classification project. I documented the source and license, removed exact duplicate message texts before a stratified train/test split to reduce leakage, and compared simple rules with Naive Bayes and Logistic Regression using TF-IDF features. On the fixed test split, Logistic Regression had higher spam recall and F1 than the other two methods, while the rule baseline was weaker. I also made a Streamlit demo and documented that this historical English dataset does not establish scam detection performance or performance on current messages.”
+“I built an end-to-end SMS spam classification project, from dataset provenance and license documentation through evaluation and a small Streamlit demo. I removed exact duplicate messages before stratified five-fold cross-validation, used pipelines so TF-IDF vocabulary was fit only within each training fold, and compared a transparent rule baseline with Naive Bayes and Logistic Regression. Logistic Regression reached a pooled out-of-fold F1 of 0.807 for spam, with fold mean F1 0.806 and sample standard deviation 0.020. The demo is described as English spam/ham classification: this historical dataset does not establish scam detection or performance on current messages.”
 
-Use these statements only while the included code, report, and experiment protocol remain accurate. Do not describe the result as a publication, production deployment, or general fraud-detection capability.
+Use these statements only alongside the committed experiment report. Do not describe the work as a publication, a production deployment, or a general fraud-detection capability.

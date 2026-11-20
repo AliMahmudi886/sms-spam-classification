@@ -12,6 +12,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 RAW_DIR = ROOT / "data" / "raw"
 URL = "https://archive.ics.uci.edu/static/public/228/sms+spam+collection.zip"
+EXPECTED_DATA_SHA256 = "7d039a24a6083ed9ef0f806ebad56bbb976e3aeb8de05669173bfdc4996c239d"
 
 
 def main() -> None:
@@ -26,7 +27,15 @@ def main() -> None:
             if not matches:
                 raise RuntimeError(f"Expected {member!r} in the UCI archive, found none.")
             destination = RAW_DIR / member
-            destination.write_bytes(archive.read(matches[0]))
+            member_bytes = archive.read(matches[0])
+            if member == "SMSSpamCollection":
+                checksum = hashlib.sha256(member_bytes).hexdigest()
+                if checksum != EXPECTED_DATA_SHA256:
+                    raise RuntimeError(
+                        "The downloaded dataset checksum differs from the documented corpus. "
+                        "Do not train on it until DATASET.md and the experiment protocol are reviewed."
+                    )
+            destination.write_bytes(member_bytes)
 
     checksum = hashlib.sha256((RAW_DIR / "SMSSpamCollection").read_bytes()).hexdigest()
     print(f"Saved raw data and readme under {RAW_DIR}")
