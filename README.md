@@ -14,6 +14,7 @@ A reproducible text-classification study and local Streamlit demo for labeling E
 - Stratified five-fold cross-validation, out-of-fold metrics, fold-level variation, and confusion matrices.
 - A small local app for entering a message and viewing a model prediction with clear limitations.
 - A linear TF-IDF feature contribution view and a concise [Model Card](docs/MODEL_CARD.md) describing intended use and limitations.
+- An academic-style [manuscript draft](docs/PAPER_DRAFT.md) and candid [journal-readiness assessment](docs/JOURNAL_READINESS.md).
 
 ## Research question
 
@@ -110,6 +111,8 @@ requirements.lock          Exact environment used for the reported experiment
 docs/EXPERIMENT.md         Research question and evaluation protocol
 docs/MODEL_CARD.md         Intended use, evaluation, and model limitations
 docs/REPRODUCIBILITY.md    Environment, rerun steps, outputs, and references
+docs/PAPER_DRAFT.md       Academic-style draft based on measured results
+docs/JOURNAL_READINESS.md Literature scan and publication-readiness decision
 docs/RESUME_AND_INTERVIEW.md Honest resume and interview wording
 reports/RESULTS.md         Measured cross-validation results
 DATASET.md                 Citation, license, provenance, and inspection record
