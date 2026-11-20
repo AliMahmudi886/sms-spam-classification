@@ -65,6 +65,8 @@ python -m src.train
 
 Each successful CI job uploads the generated human-readable report and machine-readable metrics as a downloadable artifact retained for 30 days. The trained model stays in the temporary runner workspace and is not committed to the repository.
 
+See [docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md) for platform-specific setup, generated outputs, interpretation limits, and references.
+
 ## Run locally
 
 Requires Python 3.10 or newer.
@@ -107,6 +109,7 @@ scripts/download_data.py   Download and verify the official UCI data file
 requirements.lock          Exact environment used for the reported experiment
 docs/EXPERIMENT.md         Research question and evaluation protocol
 docs/MODEL_CARD.md         Intended use, evaluation, and model limitations
+docs/REPRODUCIBILITY.md    Environment, rerun steps, outputs, and references
 docs/RESUME_AND_INTERVIEW.md Honest resume and interview wording
 reports/RESULTS.md         Measured cross-validation results
 DATASET.md                 Citation, license, provenance, and inspection record
