@@ -22,6 +22,7 @@ This is a focused first-pass scan, not a systematic review.
 | Anidjar et al. (2024), *Computers & Security* | Studies an OOD-based, GAN-like approach for extending limited SMS spam datasets. [Paper](https://doi.org/10.1016/j.cose.2024.103998) | A generic OOD/data-augmentation claim also overlaps; any extension must specify a different, testable question. |
 | *Key insights into recommended SMS spam detection datasets* (2025), *Scientific Reports* | Compares ten SMS datasets using model performance and dataset-quality characteristics. [Paper](https://doi.org/10.1038/s41598-025-92223-1) | Dataset comparison and dataset-quality recommendations are already being studied; these alone are not a safe novelty claim. |
 | Ali et al. (2025), *MOZ-Smishing* | Presents a Portuguese, Mozambique-specific mobile-money smishing benchmark and describes the data as open-licensed. [ACL Anthology paper](https://aclanthology.org/2025.africanlp-1.23/) | It may support a multilingual or domain-transfer direction, but the linked dataset is anonymized in the paper metadata, so the actual files and license have not been verified. Do not use it until verified. |
+| Nahapetyan et al. (2024), *On SMS Phishing Tactics and Infrastructure* | Releases a large English SMS-phishing dataset associated with public gateways and labels based on VirusTotal/APWG reports. [Paper](https://bradreaves.net/publication/npc%2B24/npc%2B24.pdf) · [Data repository](https://github.com/wspr-ncsu/sms-phishing) | The repository's MIT license is clear for repository materials, but does not clearly establish rights to the underlying third-party message contents, numbers, URLs, or other included data. The README describes raw messages with destination numbers and campaign URLs/timestamps. This is phishing-only data, so it cannot alone support precision, F1, or a balanced external test. Do not download or use it until provenance, privacy, and data reuse rights are clarified. |
 
 ## Candidate follow-up question
 
@@ -31,13 +32,15 @@ Subject to data rights and a fuller novelty review, a more defensible direction 
 
 This is a candidate, not a verified research gap. Before accepting it, the review must determine whether the selected external corpus is legally usable, whether it overlaps with UCI or other known collections, whether its labels are sufficiently compatible, and whether comparable studies have already answered the question. A time-based study would additionally require trustworthy per-message timestamps; do not infer timestamps that are not present.
 
-The 2024 Super SMS dataset is one possible research lead, not an approved data source. The repository's top-level materials inspected in this review do not establish dataset-specific reuse rights. The paper's own CC BY-NC-ND license does not, by itself, establish the dataset's independent reuse terms. Inspect the data directory and obtain a clear license or permission before using, adapting, or redistributing it. No messages have been sent to the maintainers, and no download or modeling on that dataset has been performed.
+The 2024 Super SMS dataset is one possible research lead, not an approved data source. The repository includes data folders, but the inspected repository materials do not state a data-specific license or reuse permission. The paper's own CC BY-NC-ND license does not, by itself, establish the dataset's independent reuse terms. Obtain a clear license or permission before using, adapting, or redistributing it. No messages have been sent to the maintainers, and no download or modeling on that dataset has been performed.
+
+The 2024 NCSU SMS-phishing release is also not approved for this project at this time. Its repository publishes an MIT license, but the README describes raw messages collected from external gateways and includes destination numbers; campaign data also include URLs and timestamps. The license does not expressly resolve the underlying third-party content and privacy questions. In addition, the release is positive-only phishing data, so it could at most be considered later as a carefully governed sensitivity/recall challenge set, not as a standalone test for precision, F1, or a full confusion matrix. This review did not download or inspect message rows. No contact has been made with its authors.
 
 ## Gaps before journal submission
 
 - Complete and document a reproducible literature search, inclusion criteria, and comparison table.
 - Establish a research contribution that is distinct from prior benchmark, robustness, evasion, and dataset-quality studies.
-- Verify explicit data licenses and provenance for every added corpus; obtain permission where the terms are unclear.
+- Verify explicit data licenses and provenance for every added corpus; obtain permission where the terms are unclear. For the NCSU and Super SMS leads reviewed here, that remains unresolved.
 - If adding external data, audit exact and near duplicates across corpora before splitting or evaluation.
 - Predefine the evaluation protocol before the final evaluation; report positive-class metrics, confusion matrices, appropriate uncertainty estimates, and error analysis.
 - Keep the distinction between spam, smishing, and verified fraud explicit; only make claims supported by the chosen labels.
@@ -46,4 +49,5 @@ The 2024 Super SMS dataset is one possible research lead, not an approved data s
 
 ## Decision rule
 
-Continue in the SMS domain if the literature review identifies a specific open question and an accessible dataset with clear rights. If either condition fails, keep the current work as an honest portfolio/capstone paper and select a new topic for journal-oriented research before expanding the experiments. Do not claim that the current draft is ready for submission or likely to be accepted.
+Continue in the SMS domain for the current portfolio project; do not switch topics just because the draft is not journal-ready. For journal-oriented work, do not expand experiments with either external lead yet: the NCSU corpus has unresolved rights/privacy and label-coverage limitations, while the Super SMS repository has no verified data-specific reuse terms. First finish the scoped literature review and identify a data source with explicit terms and suitable labels. If that cannot be established, keep this work as an honest portfolio/capstone paper and select a different, feasible question before further journal-directed implementation. Do not claim that the current draft is ready for submission or likely to be accepted.
+
