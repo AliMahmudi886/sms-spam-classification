@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local data and generated artifacts
+data/raw/
+models/
+reports/generated/
+*.joblib
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
