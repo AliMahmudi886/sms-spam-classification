@@ -63,7 +63,7 @@ python scripts/download_data.py
 python -m src.train
 ```
 
-The workflow regenerates the model and report as CI artifacts on the runner; it does not commit generated files back to the repository.
+The workflow regenerates the model and report in its temporary runner workspace. It does not upload them as downloadable artifacts or commit them back to the repository.
 
 ## Run locally
 
