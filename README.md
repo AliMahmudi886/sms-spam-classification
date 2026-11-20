@@ -2,6 +2,7 @@
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![CI](https://github.com/AliMahmudi886/sms-spam-classification/actions/workflows/ci.yml/badge.svg)](https://github.com/AliMahmudi886/sms-spam-classification/actions/workflows/ci.yml)
 
 A reproducible text-classification study and local Streamlit demo for labeling English SMS messages as `spam` or `ham`. The dataset has no separate scam or fraud label, so this project does **not** claim to detect scams or guarantee safe messages.
 
@@ -52,6 +53,18 @@ The project uses the [UCI SMS Spam Collection](https://archive.ics.uci.edu/datas
 
 The raw corpus is not committed to this repository. Run the retrieval script below. Project code is MIT-licensed; the dataset keeps its separate CC BY 4.0 terms.
 
+## Continuous integration
+
+GitHub Actions runs the checksum-verified five-fold experiment on Ubuntu and Windows with the pinned Python 3.12 dependencies whenever code is pushed to `main` or a pull request targets `main`. You can reproduce the same workflow locally after activating your virtual environment:
+
+```bash
+python -m pip install -r requirements.lock
+python scripts/download_data.py
+python -m src.train
+```
+
+The workflow regenerates the model and report as CI artifacts on the runner; it does not commit generated files back to the repository.
+
 ## Run locally
 
 Requires Python 3.10 or newer.
@@ -97,6 +110,7 @@ docs/MODEL_CARD.md         Intended use, evaluation, and model limitations
 docs/RESUME_AND_INTERVIEW.md Honest resume and interview wording
 reports/RESULTS.md         Measured cross-validation results
 DATASET.md                 Citation, license, provenance, and inspection record
+.github/workflows/ci.yml   Cross-platform experiment reproducibility workflow
 ```
 
 ## Limitations
