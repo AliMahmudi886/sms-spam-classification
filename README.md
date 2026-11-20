@@ -63,7 +63,7 @@ python scripts/download_data.py
 python -m src.train
 ```
 
-The workflow regenerates the model and report in its temporary runner workspace. It does not upload them as downloadable artifacts or commit them back to the repository.
+Each successful CI job uploads the generated human-readable report and machine-readable metrics as a downloadable artifact retained for 30 days. The trained model stays in the temporary runner workspace and is not committed to the repository.
 
 ## Run locally
 

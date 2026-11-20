@@ -43,3 +43,13 @@ jobs:
 
       - name: Reproduce cross-validation experiment
         run: python -m src.train
+
+      - name: Upload experiment report and metrics
+        uses: actions/upload-artifact@v4
+        with:
+          name: experiment-results-${{ matrix.os }}
+          path: |
+            reports/RESULTS.md
+            reports/generated/experiment_results.json
+          if-no-files-found: error
+          retention-days: 30
