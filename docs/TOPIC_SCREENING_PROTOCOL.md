@@ -57,6 +57,20 @@ A candidate is **not selected** if data rights/access score 0, or if research ga
 
 This log summarizes targeted searches already performed in this project session. It is not an exhaustive database search and does not count as a completed systematic or scoping review.
 
+### Query families and search evidence
+
+Searches used general web search with exact topic/task combinations and follow-up searches on named papers and official standards/data sources. They were not run through authenticated Scopus, Web of Science, IEEE Xplore, or ACM Digital Library interfaces. Search results did not provide a stable, exportable result count, so no hit totals are reported.
+
+| Query family (representative wording) | Sources retrieved/checked | Search and appraisal limitation |
+|---|---|---|
+| `SMS spam detection cross dataset UCI Mendeley 2026 paper`; `SMS spam detection duplicate leakage benchmark datasets`; `SMS smishing dataset label methodology` | UCI/Mendeley official records; recent IEEE, SAGE, Scientific Reports and conference records documented in [JOURNAL_READINESS.md](JOURNAL_READINESS.md). | Some full texts were inaccessible; the Mendeley landing record was accessible but its official archive was not retrieved, and no independent-corpus experiment was run. |
+| `Persian RTL mixed direction interface layout browser study`; `Persian web accessibility screen reader RTL WCAG study`; `bidirectional interface directionality empirical study Persian RTL` | W3C HTML bidi requirements and test reports; Unicode UAX #9; WebAIM 2025; CHI 2025; IJHCS 2025; OUIID 2026. | Search identifies close prior work, including tests and user studies. It does not establish Persian-specific gap absence; publisher full texts were not all accessible. |
+| `software defect prediction temporal leakage random split 2026`; `2025 software defect prediction time-aware evaluation data leakage` | Information and Software Technology 2026; 2026 audit preprint; empirical study of SZZ/data collection. | Broad temporal-leakage question is directly occupied; PROMISE/NASA data provenance and terms need source-by-source verification for any proposed reuse. |
+| `phishing URL dataset temporal cross dataset evaluation benchmark 2025 2026`; `malicious URL benchmark dataset 2026` | LegitPhish Data in Brief record; EntroURL-Bench conference record; PhreshPhish preprint. | Dataset availability is not the same as permission to redistribute underlying URLs or full records; source terms and collection methodology must be checked before use. |
+| `public vulnerability dataset license OSV NVD vulnerability intelligence dataset`; `software vulnerability prediction point-in-time benchmark 2026` | Official OSV data-source/license documentation; NIST data feeds and reuse guidance; VulZoo ASE 2024 dataset paper; recent vulnerability timing and package/security studies. | OSV is an aggregation with source-specific terms, including some non-commercial/no-derivatives terms. NVD/NIST attribution and reuse conditions must be followed; no data downloaded or analyzed. |
+
+The query wording above is a concise reconstruction of query families used during the live screening, not a timestamped export from a scholarly database. Because the search backend returned HTTP 404 on the attempted follow-up in this step, this update adds no new hits or result counts.
+
 | Area | Search focus and representative sources | Preliminary decision |
 |---|---|---|
 | SMS spam/smishing | Cross-corpus evaluation, dataset quality, duplicates/provenance, and lightweight models. Recent directly relevant works are summarized in [JOURNAL_READINESS.md](JOURNAL_READINESS.md), including 2025–2026 studies on multi-dataset evaluation and UCI/Mendeley transfer. | Keep as a portfolio project. No distinct journal question with verified independent data has cleared the initial screen. |
