@@ -95,17 +95,17 @@ The records for LegitPhish, EntroURL-Bench, CHI 2025, the 2025/2026 SMS works, a
 
 **Decision:** The existing SMS study remains the strongest finished artifact, but no journal extension has cleared both novelty and data gates. Do not run more classifier experiments merely to increase the number of tables. The next legitimate research milestone is an independent, supervisor-reviewed gap search and source-level data-access decision. If the user wants immediate technical work without that research dependency, a clearly labeled threshold-sensitivity appendix can be added to the portfolio later, but it must not be called novel or external validation.
 
-## Project completion estimate (2026-11-21)
+## Project completion estimate (2026-11-22)
 
 These are milestone estimates, not scientific measures. The criteria are documented here so the percentage does not imply paper quality or publication likelihood.
 
 | Track | Estimate | Completed evidence | Remaining milestones |
 |---|---:|---|---|
-| Resume/portfolio repository | **90%** | Public repository; app and model-training flow; documented UCI source; reproducibility instructions; actual baseline experiment, results, model card, and paper draft; recent research-direction records. | Confirm current GitHub Actions run; perform/record a manual UI run and visual review; optionally make one final README pass after CI. No local tests were run in this phase per the user's standing instruction. |
+| Resume/portfolio repository | **95%** | Public repository; app and model-training flow; documented UCI source; reproducibility instructions; actual baseline experiment, results, model card, and paper draft; recent research-direction records. CI run #15 for commit `3b8b3d4` completed successfully on Nov 21, 2026. On Nov 22, 2026, manually launched the app with the existing local environment and model, entered a synthetic sample message, observed a SPAM prediction, model scores, and limitation text, then stopped the local server. | Optional final README pass. Manual UI verification is limited to one synthetic input on this local environment; no local software test suite was run. |
 | Academic manuscript as a complete draft | **55%** | English draft contains abstract, introduction, methods, actual results, discussion, limitations, declarations checklist, and references. | Complete a reproducible literature search, settle a defensible research question/contribution, fully appraise closest sources, and update the manuscript accordingly. |
 | Journal submission readiness | **20%** | Honest baseline manuscript and published, reproducible code/results exist; data source for the baseline is documented. | No defensible journal contribution selected; no complete literature review; no target journal; no independent/approved data plan for an extension; author declarations and journal formatting remain incomplete. This is not a prediction of acceptance. |
 
-The percentages use different denominators. Portfolio completion is about a public educational project; manuscript completion is about having a full draft; journal readiness requires a defensible contribution and complete research/submission checks. They should not be added or averaged.
+The percentages use different denominators. Portfolio completion is about a public educational project; manuscript completion is about having a full draft; journal readiness requires a defensible contribution and complete research/submission checks. They should not be added or averaged. The GitHub Actions workflow reproduces the research experiment; its success is reported as CI evidence, not as a local software test run.
 
 | Area | Search focus and representative sources | Preliminary decision |
 |---|---|---|
