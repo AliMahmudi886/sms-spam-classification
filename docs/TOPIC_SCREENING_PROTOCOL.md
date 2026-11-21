@@ -84,6 +84,29 @@ The query wording above is a concise reconstruction of query families used durin
 
 The records for LegitPhish, EntroURL-Bench, CHI 2025, the 2025/2026 SMS works, and the W3C/WCAG material were found via publisher, standards, or official project pages/search excerpts, but were not all appraised from full text in this step. They are leads and proximity evidence, not a systematic inclusion set. The public project should preserve that distinction.
 
+### Gap matrix and next research decision
+
+| Candidate question | Closest evidence | Data/access | Feasibility | Novelty assessment | Decision |
+|---|---|---|---|---|---|
+| Repeat the UCI spam-vs-ham comparison with another model | Existing experiment plus extensive later SMS benchmark work, including current UCI/Mendeley comparison and feature/model studies already listed in [JOURNAL_READINESS.md](JOURNAL_READINESS.md). | UCI CC BY 4.0 and already documented. | High. | Low; an additional algorithm on the same known corpus is not a distinct contribution. | Do not extend for journal novelty. Keep as portfolio baseline. |
+| Compare UCI internal CV against a modern external SMS corpus | Recent 2026 SMS papers already report multi-dataset and UCI/Mendeley evaluation. External-corpus overlap/labels/provenance remain questionable for Mendeley, while other candidate corpora have rights/privacy concerns. | Not cleared; no external corpus is approved for this project. | Medium to high, depending on data access. | Low without a clearly independent dataset and a narrower question. | Do not start until independent data and source-specific reuse terms are verified. |
+| Test operating thresholds under class-prevalence or false-positive-cost changes | Recent work addresses robustness, evolving SMS spam, and operating points; e.g. [Johnny Still Receives Spam SMS (2026 preprint)](https://arxiv.org/abs/2609.01171) studies robustness and precision–recall operating points. | Could be explored with the existing out-of-fold scores, but simulated prevalence/costs are assumptions, not observed deployment data. | High for a sensitivity analysis. | Low as a standalone contribution; easy to overstate synthetic prevalence scenarios as real-world evidence. | Possible teaching/reproducibility add-on only; not selected as a journal contribution. |
+| Study modern, source-authenticated smishing with new human/labeled data | Existing current SMS work and large datasets show the topic is active; a defensible study would require independent verified smishing labels, lawful collection, careful privacy design, and likely external domain expertise. | No approved source or collection/ethics plan currently exists. | Low for a solo bachelor's project. | Potentially differentiable only after a distinct threat/label/source question is demonstrated. | Do not collect or process personal messages; seek supervisor/industry collaboration before pursuing. |
+
+**Decision:** The existing SMS study remains the strongest finished artifact, but no journal extension has cleared both novelty and data gates. Do not run more classifier experiments merely to increase the number of tables. The next legitimate research milestone is an independent, supervisor-reviewed gap search and source-level data-access decision. If the user wants immediate technical work without that research dependency, a clearly labeled threshold-sensitivity appendix can be added to the portfolio later, but it must not be called novel or external validation.
+
+## Project completion estimate (2026-11-21)
+
+These are milestone estimates, not scientific measures. The criteria are documented here so the percentage does not imply paper quality or publication likelihood.
+
+| Track | Estimate | Completed evidence | Remaining milestones |
+|---|---:|---|---|
+| Resume/portfolio repository | **90%** | Public repository; app and model-training flow; documented UCI source; reproducibility instructions; actual baseline experiment, results, model card, and paper draft; recent research-direction records. | Confirm current GitHub Actions run; perform/record a manual UI run and visual review; optionally make one final README pass after CI. No local tests were run in this phase per the user's standing instruction. |
+| Academic manuscript as a complete draft | **55%** | English draft contains abstract, introduction, methods, actual results, discussion, limitations, declarations checklist, and references. | Complete a reproducible literature search, settle a defensible research question/contribution, fully appraise closest sources, and update the manuscript accordingly. |
+| Journal submission readiness | **20%** | Honest baseline manuscript and published, reproducible code/results exist; data source for the baseline is documented. | No defensible journal contribution selected; no complete literature review; no target journal; no independent/approved data plan for an extension; author declarations and journal formatting remain incomplete. This is not a prediction of acceptance. |
+
+The percentages use different denominators. Portfolio completion is about a public educational project; manuscript completion is about having a full draft; journal readiness requires a defensible contribution and complete research/submission checks. They should not be added or averaged.
+
 | Area | Search focus and representative sources | Preliminary decision |
 |---|---|---|
 | SMS spam/smishing | Cross-corpus evaluation, dataset quality, duplicates/provenance, and lightweight models. Recent directly relevant works are summarized in [JOURNAL_READINESS.md](JOURNAL_READINESS.md), including 2025–2026 studies on multi-dataset evaluation and UCI/Mendeley transfer. | Keep as a portfolio project. No distinct journal question with verified independent data has cleared the initial screen. |
