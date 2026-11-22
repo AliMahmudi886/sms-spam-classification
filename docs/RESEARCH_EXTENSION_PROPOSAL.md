@@ -1,6 +1,6 @@
 # Research Extension Proposal: SMS-Length-Bounded Prompt-Injection Evaluation
 
-**Protocol version:** 0.2
+**Protocol version:** 0.3
 **Status:** Narrow candidate for further screening; novelty and feasibility are not established.
 **Review date:** 2026-11-22
 
@@ -12,9 +12,13 @@ The broad question of prompt injection against phishing classification is alread
 
 ## Candidate research question
 
-> For GSM-7 messages in the UCI spam/ham corpus, how do classifier-directed text length and estimated SMS segment count relate to paired label-flip rates in a fixed LLM triage setup, and how do the measured outcomes compare with length-matched neutral insertions and a non-instruction-following TF-IDF control?
+> For GSM-7 messages in the UCI spam/ham corpus, how does the encoded length of classifier-directed text relate to paired label-flip rates in a fixed LLM triage setup, compared with length-matched neutral insertions and a non-instruction-following TF-IDF control?
 
 UCS-2 is descriptive only in this corpus: just six unique messages are labeled `spam`, so the data do not support a useful class-balanced UCS-2 primary analysis. A future UCS-2 study would require a separately sourced dataset that passes independent license, provenance, and privacy review.
+
+### Validity gate: SMS transport length versus model input length
+
+An SMS segment boundary is a carrier transport constraint; it is not automatically a limit on the body received by an application or LLM. 3GPP specifies segmentation/de-segmentation and reassembly for concatenated messages, while Android's `SmsMessage.getMessageBody()` API exposes the text body to an application. Actual receiving behavior still depends on the client and system path and must be measured for a deployment claim. The UCI corpus contains message text but no original transport encoding, segment boundaries, receiving-client behavior, or truncation metadata. Therefore this dataset can support a controlled study of inserted GSM-7 septet length, with estimated SMS part count reported as a transport interpretation. It cannot show that a segment boundary itself changes model behavior or limits an attack. Such a claim would require a separately specified end-to-end client path and evidence about its behavior. Treating segment count as a causal variable is a stop condition unless that system path is measured. [3GPP TS 23.040](https://www.etsi.org/deliver/etsi_ts/123000_123099/123040/17.02.00_60/ts_123040v170200p.pdf) · [Android SmsMessage API](https://developer.android.com/reference/android/telephony/SmsMessage)
 
 The research object is **channel-length-bounded classification integrity**. The comparison is between predeclared inference conditions over the same paired message variants, not a claim that one model family is generally safer.
 
@@ -31,7 +35,7 @@ The research object is **channel-length-bounded classification integrity**. The 
 
 ## Candidate hypotheses
 
-1. Attack-induced label flips may vary with appended GSM-7 septet count and estimated SMS segment count; any observed effects apply only to the tested model/message pairs.
+1. Attack-induced label flips may vary with appended GSM-7 septet count; report estimated SMS part counts as transport context, not as an independent causal factor in the current text-only setup.
 2. Direct and selected published defense conditions may have different label-flip and false-alarm curves as the inserted text length changes, if the comparison can be reproduced fairly.
 3. The existing TF-IDF Logistic Regression model will not follow the instruction as an instruction, although added words can still change its lexical score. It is a non-instruction-following control, not a security guarantee.
 4. A condition that reduces flips may also raise false alerts on legitimate messages or affect clean-message performance; all must be measured.
