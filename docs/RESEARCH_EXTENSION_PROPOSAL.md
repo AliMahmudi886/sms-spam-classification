@@ -8,7 +8,7 @@
 
 The existing app uses a classical TF-IDF Logistic Regression model, which does not follow natural-language instructions. An LLM-based SMS assistant would introduce a different risk: the message body is untrusted input and may contain text that attempts to override the classifier's task.
 
-The broad question of prompt injection against phishing classification is already directly addressed in recent email work, including a November 2026 staged-inference protocol with clean, injected-phishing, and injected-legitimate conditions. Therefore, this proposal no longer treats generic injection resistance or prompt boundaries as the possible contribution. The remaining candidate is specific to the SMS channel: characterize the injection-length budget and label-flip behavior under standard single-part and concatenated-SMS encoding limits. SMS segment limits are specified by 3GPP; GSM-7 and UCS-2 have different capacities. [3GPP TS 23.040](https://www.etsi.org/deliver/etsi_ts/123000_123099/123040/17.02.00_60/ts_123040v170200p.pdf)
+The broad question of prompt injection against phishing classification is already directly addressed in recent email work, including a November 2026 staged-inference protocol with clean, injected-phishing, and injected-legitimate conditions. In addition, a 2026 Findings of IJCNLP-AACL paper evaluates prompt-trigger defenses on an SMS Spam test split, and an August 2026 preprint compares traditional and instruction-following classifiers under prompt injection on the SMS Spam Collection. Generic SMS prompt-injection evaluation is therefore not a defensible novelty claim. The remaining possibility is narrower: characterize the injection-length budget and label-flip behavior under standard single-part and concatenated-SMS encoding limits. No gap is established; this requires a broader, documented related-work search and supervisor review before any experiment. SMS segment limits are specified by 3GPP; GSM-7 and UCS-2 have different capacities. [3GPP TS 23.040](https://www.etsi.org/deliver/etsi_ts/123000_123099/123040/17.02.00_60/ts_123040v170200p.pdf) [UniGuardian, ACL Anthology](https://aclanthology.org/2026.findings-aacl.119/) [Asif, 2026 preprint](https://doi.org/10.5281/zenodo.21939849)
 
 ## Candidate research question
 
@@ -47,6 +47,12 @@ These are testable expectations, not assumed results.
 No dataset files were downloaded for this proposal. Do not commit raw message text. Record source/version, retrieval date, checksum, license, attribution, transformations, and privacy review before any experimental use.
 
 The first candidate pilot should use only the existing UCI `spam`/`ham` task and inspect how many messages fall into each SMS encoding and length band. Do not manufacture a UCS-2 sample by appending arbitrary Unicode characters to messages. If authentic UCI text does not provide enough UCS-2 cases for a meaningful paired comparison, report that feasibility limit and constrain the initial experiment to GSM-7 rather than implying a balanced encoding study.
+
+### Read-only UCI encoding feasibility check (2026-11-22)
+
+The already-present official UCI file was parsed locally for this count-only audit; it was not downloaded again, modified, or used to train a model. After exact-text deduplication, the 5,171 unique messages yielded 5,082 GSM-7 candidates (4,435 `ham`, 647 `spam`) and 89 UCS-2 candidates (83 `ham`, 6 `spam`). Thus UCI does **not** support a class-balanced UCS-2 comparison; report UCS-2 only descriptively or exclude it from the primary comparison.
+
+For a one-part message, 3,858 `ham` and 158 `spam` messages have at least 30 GSM-7 units of spare capacity; 3,482 `ham` and 73 `spam` messages have at least 60. These are simple capacity counts before adding separators or validating any instruction text. They are not attack-success results or a guarantee that a meaningful payload fits. The practical candidate is therefore a primarily GSM-7 length-budget study, with conservative sample-size/error-bar planning required for the smaller positive-class subset. No model was queried and no test fixture was created.
 
 ## Experimental design (draft)
 
