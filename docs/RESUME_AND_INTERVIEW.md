@@ -4,6 +4,8 @@
 
 Built a reproducible English SMS spam classification study and Streamlit demo using the UCI SMS Spam Collection; compared a transparent rule baseline with Multinomial Naive Bayes and Logistic Regression using stratified five-fold cross-validation, out-of-fold precision/recall/F1, fold-level variation, and confusion matrices. Added a model card, an inspectable linear TF-IDF feature-contribution view, and a GitHub Actions workflow that reproduces the experiment on Ubuntu and Windows. Logistic Regression reached pooled out-of-fold spam precision 0.998, recall 0.677, and F1 0.807; mean fold F1 was 0.806 ± 0.020. The app was manually checked with one synthetic example. See [reports/RESULTS.md](../reports/RESULTS.md) for the full method and limits.
 
+Optional engineering detail when relevant: “Performed a point-in-time OSV lookup of 39 locked Python package versions; the API returned no matching advisories on 2026-11-22.” This is a scoped dependency check, not a security certification; see [SECURITY_REVIEW.md](SECURITY_REVIEW.md).
+
 ## Short interview explanation
 
 “I built an end-to-end SMS spam classification project, from dataset provenance and license documentation through evaluation and a small Streamlit demo. I removed exact duplicate messages before stratified five-fold cross-validation, used pipelines so TF-IDF vocabulary was fit only within each training fold, and compared a transparent rule baseline with Naive Bayes and Logistic Regression. Logistic Regression reached a pooled out-of-fold F1 of 0.807 for spam, with fold mean F1 0.806 and sample standard deviation 0.020. The demo is described as English spam/ham classification: this historical dataset does not establish scam detection or performance on current messages.”

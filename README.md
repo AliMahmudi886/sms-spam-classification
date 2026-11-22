@@ -15,6 +15,7 @@ A reproducible text-classification study and local Streamlit demo for labeling E
 - A small local app for entering a message and viewing a model prediction with clear limitations.
 - A linear TF-IDF feature contribution view and a concise [Model Card](docs/MODEL_CARD.md) describing intended use and limitations.
 - An academic-style [manuscript draft](docs/PAPER_DRAFT.md) and candid [journal-readiness assessment](docs/JOURNAL_READINESS.md).
+- A dated [dependency security review](docs/SECURITY_REVIEW.md) of the exact locked Python packages, with scope and limitations.
 
 ## Research question
 
@@ -68,7 +69,7 @@ Each successful CI job uploads the generated human-readable report and machine-r
 
 See [docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md) for platform-specific setup, generated outputs, interpretation limits, and references.
 
-The latest recorded workflow run for commit [`0167d0d`](https://github.com/AliMahmudi886/sms-spam-classification/commit/0167d0d52f92ee98a1dac44cdd5c6e649339bd49) completed successfully on [Ubuntu and Windows](https://github.com/AliMahmudi886/sms-spam-classification/actions/runs/45000250314). GitHub Actions downloaded and checksum-verified the public dataset, reproduced the cross-validation experiment, and uploaded the report and metrics. This confirms reproducibility in those CI environments for that commit; it is not evidence of external validity or production readiness.
+The workflow run triggered by commit [`0167d0d`](https://github.com/AliMahmudi886/sms-spam-classification/commit/0167d0d52f92ee98a1dac44cdd5c6e649339bd49) completed successfully on [Ubuntu and Windows](https://github.com/AliMahmudi886/sms-spam-classification/actions/runs/45000250314). GitHub Actions downloaded and checksum-verified the public dataset, reproduced the cross-validation experiment, and uploaded the report and metrics. This confirms reproducibility in those CI environments for that commit; it is not evidence of external validity or production readiness.
 
 ## Run locally
 
@@ -116,6 +117,7 @@ docs/REPRODUCIBILITY.md    Environment, rerun steps, outputs, and references
 docs/PAPER_DRAFT.md       Academic-style draft based on measured results
 docs/JOURNAL_READINESS.md Literature scan and publication-readiness decision
 docs/RESUME_AND_INTERVIEW.md Honest resume and interview wording
+docs/SECURITY_REVIEW.md  Dated OSV dependency audit and limitations
 reports/RESULTS.md         Measured cross-validation results
 DATASET.md                 Citation, license, provenance, and inspection record
 .github/workflows/ci.yml   Cross-platform experiment reproducibility workflow
