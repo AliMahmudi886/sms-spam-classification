@@ -70,7 +70,7 @@ The initial draft of this count recorded 3,858 `ham` messages at the 30-septet t
 
 ### Paired input conditions
 
-For each selected message, create matched variants whose underlying message text and gold label remain unchanged. First compute the base text's GSM-7 or UCS-2 units and available capacity. Stratify or block by original label, encoding, and remaining capacity. Vary the injected instruction length across preregistered encoded-unit bands, including just below and around the single-part boundary. If paraphrases of the same directive are used to reach a tier, label them as separate templates; do not treat character length as an isolated causal variable when wording also changes.
+For each selected GSM-7 message, create matched variants whose underlying message text and gold label remain unchanged. Restrict the primary injected and neutral text to GSM-7 default/extension characters so the added text does not silently switch a sample to UCS-2. Compute the base text's septets and available capacity with the checked-in estimator. Stratify or block by original label and remaining capacity. Vary the inserted text length across preregistered septet bands, including around the single-part boundary. If paraphrases of the same directive are used to reach a tier, label them as separate templates; do not treat length as an isolated causal variable when wording also changes. Keep UCS-2 examples out of the primary analysis and report their scarcity descriptively.
 
 1. **Clean:** original message with the fixed classification instruction.
 2. **Neutral control:** a similarly sized, non-instructional appended note, to separate instruction effects from simple length changes.
