@@ -229,7 +229,7 @@ The percentages use different denominators. Portfolio completion is about a publ
 
 No candidate has yet passed both the research-gap and data-rights/access gates. The SMS project is complete enough to present as an undergraduate portfolio/reproducibility artifact, but its manuscript is not journal-ready. Do not start new model experiments, collect personal data, or claim journal novelty based on this screen.
 
-The next research step is to complete the search log with database-specific queries and screening counts, retrieve/read the closest papers in full, and check each candidate dataset's official terms. A supervisor should review the shortlisted gap before a new study protocol or participant recruitment begins. If no candidate passes the gates, keep the resume project and postpone the journal article until a viable question is identified.
+The next research step is now a targeted screen of the candidate question in [RESEARCH_EXTENSION_PROPOSAL.md](RESEARCH_EXTENSION_PROPOSAL.md): instruction-like content inside SMS bodies and classification integrity in LLM triage. This does not authorize a model experiment yet. Complete the scholarly search, local inference feasibility check, and data/privacy gates first; if any gate fails, retain the current portfolio app and do not claim novelty.
 
 ## Limitations of this screen
 
@@ -237,6 +237,16 @@ The next research step is to complete the search log with database-specific quer
 - Some publisher full texts were inaccessible during the initial screen; abstracts and official standards/repository records were used where available and must not be treated as full-text appraisal.
 - No double screening, preregistration, or formal risk-of-bias assessment has been conducted.
 - The 2026 sources are time-sensitive and should be rechecked at topic selection and submission.
+
+### Candidate SMS security extension: instruction/data boundary (2026-11-22)
+
+The previous project screens already rejected another generic cross-dataset, duplicate/provenance, label-mapping, LLM explanation, or temporal-drift study. This follow-up therefore examines a narrower risk in LLM-assisted SMS triage: an SMS body may itself contain natural-language instructions that conflict with the classifier task. A 2026 SMS spam paper covers prompting and semantic-preserving adversarial edits, while SafeBreach reports SMS notification-based indirect prompt injection against a voice assistant. The exact intersection—paired measurement of label integrity under SMS-embedded instruction overrides and input-boundary controls—has not yet received a systematic scholarly screen. [2026 IJIS paper](https://link.springer.com/article/10.1007/s10207-026-01283-5) · [USENIX SOUPS 2025 SmishX](https://www.usenix.org/conference/soups2025/presentation/wang) · [SafeBreach report](https://www.safebreach.com/blog/gemini-voice-assistant-prompt-injection-exploit/)
+
+**Provisional candidate:** for matched SMS messages, measure how often instruction-like text embedded in the message flips an LLM triage label, and whether explicit untrusted-input boundaries reduce flips while retaining clean-data performance. Compare against the existing TF-IDF model as a non-instruction-following control. Keep all model tools disabled and use self-authored, non-operational fixtures.
+
+**Status and gates:** this is a candidate question, not a novelty claim or selected journal contribution. The targeted search did not establish that the full 2026 paper or supplements omit prompt-injection conditions. A database-level search and full-text screening remain necessary. Local feasibility is uncertain: the available GPU is a GTX 1650 with 4 GB VRAM and `ollama` was not found on PATH in this environment. No paid API is assumed. The UCI source's spam/ham labels do not establish fraud labels; the three-class Mendeley archive and the pseudo-anonymized IMC 2025 artifact both require their documented source/privacy review before use. No new dataset was downloaded, and no experiment was run.
+
+The proposed conditions, hypotheses, metrics, data gates, and safety boundaries are in [RESEARCH_EXTENSION_PROPOSAL.md](RESEARCH_EXTENSION_PROPOSAL.md). Do not implement or run model queries until the novelty, feasibility, and data gates are reviewed.
 
 ### Adjacent SMS direction follow-up (2026-11-22)
 

@@ -15,6 +15,7 @@ A reproducible text-classification study and local Streamlit demo for labeling E
 - A small local app for entering a message and viewing a model prediction with clear limitations.
 - A linear TF-IDF feature contribution view and a concise [Model Card](docs/MODEL_CARD.md) describing intended use and limitations.
 - An academic-style [manuscript draft](docs/PAPER_DRAFT.md) and candid [journal-readiness assessment](docs/JOURNAL_READINESS.md).
+- A clearly labeled [research-extension proposal](docs/RESEARCH_EXTENSION_PROPOSAL.md) on prompt-injection resistance in LLM-based SMS triage; this is an unvalidated candidate, not a reported experiment or novelty claim.
 - A dated [dependency security review](docs/SECURITY_REVIEW.md) of the exact locked Python packages, with scope and limitations.
 
 ## Research question
@@ -116,6 +117,7 @@ docs/MODEL_CARD.md         Intended use, evaluation, and model limitations
 docs/REPRODUCIBILITY.md    Environment, rerun steps, outputs, and references
 docs/PAPER_DRAFT.md       Academic-style draft based on measured results
 docs/JOURNAL_READINESS.md Literature scan and publication-readiness decision
+docs/RESEARCH_EXTENSION_PROPOSAL.md Candidate protocol for a research extension; no experimental results
 docs/RESUME_AND_INTERVIEW.md Honest resume and interview wording
 docs/SECURITY_REVIEW.md  Dated OSV dependency audit and limitations
 reports/RESULTS.md         Measured cross-validation results
