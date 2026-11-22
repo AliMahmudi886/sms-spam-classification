@@ -34,6 +34,16 @@ python -m src.train
 
 The downloader retrieves the official UCI archive and verifies the raw message file's SHA-256 against the value recorded in [DATASET.md](../DATASET.md). The training command removes exact duplicate texts, evaluates the rule baseline and two TF-IDF classifiers with stratified five-fold cross-validation (`shuffle=True`, `random_state=42`), then fits the preselected Logistic Regression pipeline on all unique messages for the local demo.
 
+## SMS encoding feasibility audit
+
+After retrieving the dataset, reproduce the count-only encoding and spare-capacity summary with:
+
+```bash
+python scripts/audit_sms_encoding_feasibility.py
+```
+
+The audit checks the dataset SHA-256, removes exact duplicate texts for counting, and calls the same GSM-7/UCS-2 estimator used by the app. It performs no model training or inference and writes no output files. Pass `--data PATH` to inspect a copy stored elsewhere. The reported GSM-7 spare-capacity figures are based on one-part capacity before separators or added text are considered; they are feasibility counts, not attack results.
+
 ## Generated outputs
 
 The training command creates local files that are excluded from Git:

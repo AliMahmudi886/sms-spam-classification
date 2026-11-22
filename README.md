@@ -120,6 +120,7 @@ docs/REPRODUCIBILITY.md    Environment, rerun steps, outputs, and references
 docs/PAPER_DRAFT.md       Academic-style draft based on measured results
 docs/JOURNAL_READINESS.md Literature scan and publication-readiness decision
 docs/RESEARCH_EXTENSION_PROPOSAL.md Candidate SMS-length-bounded protocol; no experimental results
+scripts/audit_sms_encoding_feasibility.py  Reproduce encoding/capacity counts without training
 docs/RESUME_AND_INTERVIEW.md Honest resume and interview wording
 docs/SECURITY_REVIEW.md  Dated OSV dependency audit and limitations
 reports/RESULTS.md         Measured cross-validation results

@@ -12,7 +12,9 @@ The broad question of prompt injection against phishing classification is alread
 
 ## Candidate research question
 
-> Under standard GSM-7 and UCS-2 SMS segment budgets, what is the relationship between the length of classifier-directed instruction text and label-flip rates in LLM-based SMS triage, and do existing email-oriented defenses retain their effect under these SMS constraints?
+> For GSM-7 messages in the UCI spam/ham corpus, how do classifier-directed text length and estimated SMS segment count relate to paired label-flip rates in a fixed LLM triage setup, and how do the measured outcomes compare with length-matched neutral insertions and a non-instruction-following TF-IDF control?
+
+UCS-2 is descriptive only in this corpus: just six unique messages are labeled `spam`, so the data do not support a useful class-balanced UCS-2 primary analysis. A future UCS-2 study would require a separately sourced dataset that passes independent license, provenance, and privacy review.
 
 The research object is **channel-length-bounded classification integrity**. The comparison is between predeclared inference conditions over the same paired message variants, not a claim that one model family is generally safer.
 
@@ -29,8 +31,8 @@ The research object is **channel-length-bounded classification integrity**. The 
 
 ## Candidate hypotheses
 
-1. Attack-induced label flips will vary with the available SMS encoding budget; successful flips within a single segment would demonstrate that multi-part length is not required for the tested model/message pairs.
-2. Email-oriented direct, generic-robust, and injection-first inference conditions may have different label-flip and false-alarm curves as the inserted text length changes.
+1. Attack-induced label flips may vary with appended GSM-7 septet count and estimated SMS segment count; any observed effects apply only to the tested model/message pairs.
+2. Direct and selected published defense conditions may have different label-flip and false-alarm curves as the inserted text length changes, if the comparison can be reproduced fairly.
 3. The existing TF-IDF Logistic Regression model will not follow the instruction as an instruction, although added words can still change its lexical score. It is a non-instruction-following control, not a security guarantee.
 4. A condition that reduces flips may also raise false alerts on legitimate messages or affect clean-message performance; all must be measured.
 
@@ -46,13 +48,23 @@ These are testable expectations, not assumed results.
 
 No dataset files were downloaded for this proposal. Do not commit raw message text. Record source/version, retrieval date, checksum, license, attribution, transformations, and privacy review before any experimental use.
 
-The first candidate pilot should use only the existing UCI `spam`/`ham` task and inspect how many messages fall into each SMS encoding and length band. Do not manufacture a UCS-2 sample by appending arbitrary Unicode characters to messages. If authentic UCI text does not provide enough UCS-2 cases for a meaningful paired comparison, report that feasibility limit and constrain the initial experiment to GSM-7 rather than implying a balanced encoding study.
+The first candidate pilot should use only the existing UCI `spam`/`ham` task and inspect how many messages fall into each SMS encoding and length band. Do not manufacture a UCS-2 sample by appending arbitrary Unicode characters to messages. If authentic UCI text does not provide enough UCS-2 cases for a meaningful paired comparison, report that feasibility limit and constrain the primary experiment to GSM-7 rather than implying a balanced encoding study.
+
+The count-only feasibility audit is reproducible from the checked-in script after the official dataset has been retrieved and checksum-verified:
+
+```bash
+python scripts/audit_sms_encoding_feasibility.py
+```
+
+The script does not download or modify data, train a model, or create attack fixtures. It rejects a dataset whose SHA-256 does not match the corpus recorded in `DATASET.md` and uses the same `estimate_sms_length` function as the app.
 
 ### Read-only UCI encoding feasibility check (2026-11-22)
 
 The already-present official UCI file was parsed locally for this count-only audit; it was not downloaded again, modified, or used to train a model. After exact-text deduplication, the 5,171 unique messages yielded 5,082 GSM-7 candidates (4,435 `ham`, 647 `spam`) and 89 UCS-2 candidates (83 `ham`, 6 `spam`). Thus UCI does **not** support a class-balanced UCS-2 comparison; report UCS-2 only descriptively or exclude it from the primary comparison.
 
-For a one-part message, 3,858 `ham` and 158 `spam` messages have at least 30 GSM-7 units of spare capacity; 3,482 `ham` and 73 `spam` messages have at least 60. These are simple capacity counts before adding separators or validating any instruction text. They are not attack-success results or a guarantee that a meaningful payload fits. The practical candidate is therefore a primarily GSM-7 length-budget study, with conservative sample-size/error-bar planning required for the smaller positive-class subset. No model was queried and no test fixture was created.
+Of the GSM-7 messages, 4,248 `ham` and 594 `spam` fit in one part as-is. For a one-part message, 3,852 `ham` and 158 `spam` messages have at least 30 septets of spare capacity; 3,482 `ham` and 73 `spam` messages have at least 60. These are simple capacity counts before adding separators or validating any instruction text. They are not attack-success results or a guarantee that a meaningful payload fits. The practical candidate is therefore a primarily GSM-7 length-budget study, with conservative sample-size/error-bar planning required for the smaller positive-class subset. No model was queried and no test fixture was created.
+
+The initial draft of this count recorded 3,858 `ham` messages at the 30-septet threshold. Re-running the documented septet-aware implementation produced 3,852; this proposal uses the reproducible script output as the corrected value.
 
 ## Experimental design (draft)
 
