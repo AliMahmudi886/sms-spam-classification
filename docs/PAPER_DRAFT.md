@@ -28,6 +28,8 @@ Recent work has addressed problems beyond a basic within-corpus comparison. Salm
 
 The literature review remains preliminary. In particular, [9] was inspected through an author-shared journal pre-proof because the publisher page was inaccessible during this review; its internal sample-count discrepancies require checking against the final version. For [10], only the publisher abstract was accessible, and the reported summary metrics require clarification from the full paper before they can be interpreted. A journal submission would require a broader, systematic search and a more precise comparison with prior evaluation protocols before asserting any research gap.
 
+A 2026 study now evaluates large language models for English and Korean SMS spam classification, including prompt variants, temporal distribution shift, and adversarial text changes [11]. Its English experiments include the UCI corpus and a newer aggregated SMS dataset. This makes a generic LLM, drift, or adversarial-robustness extension especially difficult to present as a distinct contribution. The article is evidence about prior work, not evidence that its datasets are independently licensed for reuse; this project has not used those data.
+
 ## 3. Data and methods
 
 ### 3.1 Dataset and preparation
@@ -100,3 +102,4 @@ The project code, evaluation protocol, dataset provenance record, and retrieval 
 8. Babu, B. P., Yenduri, G., Sidhardh, S., Kamath, A., Bert, J. G., & Amarsainadh, T. (2026). [Smishing Detection Beyond English Benchmarks: A Critical Review of Code-Mixed Indic Text and On-Device Language Models](https://doi.org/10.1109/ACCESS.2026.3748986). *IEEE Access* (Early Access).
 9. Şenol, T., Takcı, H., & Şeker, A. (2026). [SMS spam detection via a systematic machine learning pipeline: Feature engineering, hyperparameter optimizing, scaling, and ensemble learning](https://doi.org/10.1016/j.jer.2026.05.020). *Journal of Engineering Research, 14*(3), 2941–2952.
 10. Mishra, V., & Joshi, D. (2026). [Noise-robust SMS spam classification using a hybrid BERT and character-level CNN architecture](https://doi.org/10.1016/j.procs.2026.06.064). *Procedia Computer Science, 282*, 2970–2977.
+11. Hur, M., Seo, S., Hwang, J., et al. (2026). [Are large language models effective for detecting spam messages?](https://doi.org/10.1007/s10207-026-01283-5). *International Journal of Information Security, 25*, Article 127.

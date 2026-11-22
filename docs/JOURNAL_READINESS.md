@@ -2,6 +2,16 @@
 
 **Review date:** 2026-11-22
 
+## Adjacent SMS directions checked (2026-11-22)
+
+| Direction | Verified primary-source evidence | Implication |
+|---|---|---|
+| Roman Urdu normalization and template leakage | The Zenodo record describes 1,000 unique messages (595 legitimate, 405 phishing), raw/normalized text, template IDs, and template-aware evaluation. The related-paper title explicitly concerns normalization under that protocol. The displayed Rights and Citation fields have no values. [Official Zenodo record](https://zenodo.org/records/21810885) | The broad proposed direction is already directly addressed; data use is not cleared because the visible license field is unspecified. No download or author contact was made. |
+| LLMs, temporal drift, and adversarial robustness | The 2026 *International Journal of Information Security* paper evaluates multiple prompt strategies and LLM types on English and Korean SMS datasets, including temporal drift and adversarial edits. [Publisher full text](https://link.springer.com/article/10.1007/s10207-026-01283-5) | A generic LLM/robustness extension is not a distinct gap. Its use of the Super SMS Dataset also makes dataset-specific rights and provenance relevant to any replication. |
+| Human-facing AI explanations for smishing | The 2026 HFES paper compares no AI, a binary recommendation, and an attributive explanation; its publisher page reports no measurable extra benefit from feature explanations over recommendation alone. [Publisher paper](https://journals.sagepub.com/doi/10.1177/10711813261485898) | Broad XAI-benefit framing is already occupied. Any local population/language study needs a narrower question, recruitment and ethics review, and lawful stimuli. |
+
+These spot checks do not prove that all SMS research is exhausted. They show that none of these broad variants currently clears both the gap and feasibility gates. The manuscript remains at 60% draft completion and journal readiness remains 20%; these are project milestone estimates, not quality scores or acceptance probabilities.
+
 ## Decision update: alternative-topic screen
 
 This update records a targeted screen of adjacent directions completed on 2026-11-21. It is not a systematic review, and it does not establish that every possible question in these fields lacks novelty. It does establish that the broad versions below should not be selected as a journal contribution without a more specific gap and a supervisor-level literature review.
