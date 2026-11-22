@@ -32,6 +32,8 @@ A 2026 study now evaluates large language models for English and Korean SMS spam
 
 Filali et al. (2026) report a broad comparison of classical and neural models, text representations, and GAN/SMOTE/ADASYN augmentation on monolingual and multilingual SMS data [12]. Their work further weakens the case for a generic imbalance-augmentation or cross-lingual extension. It does not validate the present study's UCI-only estimates, and the reported scores are not directly comparable under different data and protocols.
 
+Shahbazov (2026) introduces a three-class Azerbaijani SMS collection and reports a broad classical/deep-learning benchmark [13]. The paper describes translated UCI items, messages collected from Azerbaijani users, and generated instances. This is relevant evidence that multilingual and multi-class SMS benchmarks are expanding; it is not an independent evaluation of the English UCI results presented here. The AZ-SC release was not used in this study.
+
 ## 3. Data and methods
 
 ### 3.1 Dataset and preparation
@@ -106,3 +108,4 @@ The project code, evaluation protocol, dataset provenance record, and retrieval 
 10. Mishra, V., & Joshi, D. (2026). [Noise-robust SMS spam classification using a hybrid BERT and character-level CNN architecture](https://doi.org/10.1016/j.procs.2026.06.064). *Procedia Computer Science, 282*, 2970–2977.
 11. Hur, M., Seo, S., Hwang, J., et al. (2026). [Are large language models effective for detecting spam messages?](https://doi.org/10.1007/s10207-026-01283-5). *International Journal of Information Security, 25*, Article 127.
 12. Filali, A., Shorfuzzaman, M., Abdellaoui Alaoui, E. A., Merras, M., Es-Sabry, M., Berrajaa, A., Alroobaea, R., & Yousef, A. (2026). [Cross-lingual SMS spam detection using GAN-based augmentation for imbalanced datasets](https://doi.org/10.1038/s41598-026-37769-4). *Scientific Reports, 16*, Article 7128.
+13. Shahbazov, V. (2026). [SMS dataset for multi-class classification of ham, spam, and smishing in Azerbaijani language](https://doi.org/10.25045/jpit.v17.i1.04). *Problems of Information Technology, 17*(1), 32–39.
