@@ -101,6 +101,18 @@ Follow-up exact-title/DOI searches used `"Noise-Robust SMS Spam Classification U
 
 The metadata and license checks above used public repository/API pages only. They are not a legal opinion, an independent audit of all records, or permission to reuse the messages.
 
+### Additional candidate screen (2026-11-22)
+
+This was a focused screen of three publicly documented non-personal or research-corpus candidates. It is not a systematic review, and no candidate was downloaded or evaluated.
+
+| Candidate | Verified source facts | Decision for this project |
+|---|---|---|
+| UCI SECOM | The official UCI record identifies 1,567 examples, 591 columns including timestamp/label, missing values, and CC BY 4.0; DOI 10.24432/C54305. A 2024 *Sensors* paper already compares imputation, scaling, dimensionality reduction, resampling, and six classifiers, and discusses leakage in prior preprocessing. A 2026 paper also reports SECOM experiments with train-only imputation and class imbalance. | Data access and stated reuse terms are clear, but broad preprocessing/model comparisons are occupied. The targeted pass did not establish a narrower defensible gap. Do not select a generic SECOM benchmark study. [UCI record](https://archive.ics.uci.edu/dataset/179/secom) · [2024 study](https://doi.org/10.3390/s24175461) · [2026 study](https://doi.org/10.1007/s40747-026-02323-2) |
+| UCI AI4I 2020 Predictive Maintenance | The UCI record describes a synthetic dataset of 10,000 records and states CC BY 4.0; DOI 10.24432/C5HS5C. The previously screened literature already reports the same 27-row disagreement between the aggregate failure label and five mode flags. | Explicitly licensed and not sourced from personal messages, but the initially interesting label-consistency question is already documented in prior studies. A new generic classifier benchmark would not solve that novelty problem. [UCI record](https://archive.ics.uci.edu/dataset/601/ai4i%2B2020%2B) · [2026 study](https://doi.org/10.5281/zenodo.23618340) |
+| MOZ-Smishing | The ACL AfricaNLP 2025 paper describes a crowdsourced Portuguese SMS corpus from Mozambique and reports LLM in-context experiments. The linked Hugging Face card says 2,561 rows and declares `creativeml-openrail-m`; its public preview includes transaction/OTP-like codes and account-balance details. The paper says personal identifiers in legitimate messages were anonymized, but the preview means residual sensitive information needs review. | Do not download, train on, or redistribute unless the authors clarify the data-specific rights and a documented privacy review clears the records. The paper already studies LLM detection on this dataset, so a basic model comparison also overlaps. This is a rights/privacy and research-overlap gate, not a legal conclusion. [ACL paper](https://aclanthology.org/2025.africanlp-1.23/) · [dataset card](https://huggingface.co/datasets/MOZNLP/MOZ-Smishing) |
+
+**Screening outcome:** these checks did not identify a journal-ready alternative. Continue to treat the English SMS repository as a portfolio project; do not infer that the most convenient licensed dataset automatically supplies a publishable contribution. A journal direction remains unselected pending a narrower question, primary-literature appraisal, and supervisor feedback. No new data were retrieved, and no experiment was run.
+
 ### Closest-source appraisal (current evidence level)
 
 | Source | Type/status | What it studies (based on accessible record/text) | Relevance and boundary |
