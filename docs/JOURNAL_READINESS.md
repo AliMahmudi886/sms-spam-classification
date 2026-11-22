@@ -147,3 +147,5 @@ The exact-match follow-up has now been completed. pnpm's own supply-chain guidan
 
 **Updated decision:** do not treat this as a new journal topic. At most, use it as a bounded reproduction/compatibility portfolio exercise if it remains useful; it should not be mixed into the English SMS project codebase. A separate candidate screen is still needed before selecting a replacement journal topic.
 
+The Persian RTL/BiDi lead was also rechecked. W3C has established test suites for text direction, inline markup, and isolation, and a 2026 UI-direction study includes Persian but measures item-direction preferences rather than browser text rendering. A Persian-specific browser regression corpus may be a useful engineering artifact, but the screen did not establish a journal gap beyond existing standards tests. No user study or browser experiment was conducted. Details and the thesis-level adjacent work are logged in [TOPIC_SCREENING_PROTOCOL.md](TOPIC_SCREENING_PROTOCOL.md).
+

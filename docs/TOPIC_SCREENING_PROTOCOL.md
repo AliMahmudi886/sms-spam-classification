@@ -169,6 +169,17 @@ The required focused search was completed using exact queries for the two-docume
 
 **Updated decision:** the candidate question “which tools fail on pnpm 12's two-document lockfile?” is already substantially answered by public project guidance and issue reports. Reclassify it as a useful reproduction/compatibility exercise, not a journal topic. A version-pinned regression audit might add engineering value, but this search has not shown that it adds publishable evidence beyond those reports. Do not implement it in the SMS repository or claim a novelty gap. The broader Persian RTL/BiDi direction remains a separate lead; its exact question and ethics/feasibility requirements would need an independent screen.
 
+### Persian RTL/BiDi follow-up screen (2026-11-22)
+
+A focused search revisited the Persian RTL lead and a possible no-participant question: whether current browsers render Persian strings containing Latin identifiers, numerals, URLs, and punctuation consistently across `dir=auto`, `bdi`, and Unicode isolation in text and form controls.
+
+- W3C already provides test families for HTML text direction, inline BiDi markup, and the Unicode Bidirectional Algorithm, including `dir=auto`, `textarea`/`pre`, and isolation behavior. The summaries are not all recent; some results pages are dated 2012–2019, so present-day browser behavior would require a fresh run. [W3C text-direction tests](https://www.w3.org/International/tests/html-css/list-h5-text-direction) · [rendering results](https://www.w3.org/International/tests/repo/results/bidi-text-rendering) · [algorithm results](https://www.w3.org/International/i18n-tests/results/bidi-algorithm)
+- The W3C Language Enablement index describes bidi needs for scripts such as Arabic and Hebrew and links requirements/tests; it does not by itself establish a Persian-specific gap. [W3C Language Enablement index](https://www.w3.org/TR/2024/DNOTE-typography-20240705/)
+- A 2026 UI direction study includes Persian among bidirectional languages but examines preferred direction for interface items, a different outcome from browser rendering of mixed-script form values. [Publisher paper](https://doi.org/10.1080/10447318.2026.2663079)
+- A 2024/2025 master's thesis reports an English/Persian application case study and usability tests. It is a thesis lead, not peer-reviewed journal evidence. [Thesis record](https://www.politesi.polimi.it/handle/10589/234198)
+
+**Provisional assessment:** the broad engineering problem is real and a Persian-specific browser regression corpus could be a useful portfolio tool, using self-authored strings and no personal data. But standards test suites already cover the underlying BiDi behaviors, and the current search did not establish a publishable gap in their Persian coverage. No participant study, new test corpus, or browser experiment was conducted. Keep this as a practical lead only until a deeper comparison checks the actual W3C fixture coverage and recent browser/i18n issues.
+
 ### Closest-source appraisal (current evidence level)
 
 | Source | Type/status | What it studies (based on accessible record/text) | Relevance and boundary |
