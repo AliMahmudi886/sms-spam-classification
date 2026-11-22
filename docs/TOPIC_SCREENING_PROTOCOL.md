@@ -1,7 +1,7 @@
 # Topic Screening Protocol
 
 **Status:** Preliminary scoping review in progress  
-**Protocol date:** 2026-11-21  
+**Protocol date:** 2026-11-22  
 **Purpose:** Identify a feasible computer-science research question with a plausible, evidence-based contribution and verifiable data access for a bachelor's-level project.
 
 ## Scope
@@ -69,7 +69,20 @@ Searches used general web search with exact topic/task combinations and follow-u
 | `phishing URL dataset temporal cross dataset evaluation benchmark 2025 2026`; `malicious URL benchmark dataset 2026` | LegitPhish Data in Brief record; EntroURL-Bench conference record; PhreshPhish preprint. | Dataset availability is not the same as permission to redistribute underlying URLs or full records; source terms and collection methodology must be checked before use. |
 | `public vulnerability dataset license OSV NVD vulnerability intelligence dataset`; `software vulnerability prediction point-in-time benchmark 2026` | Official OSV data-source/license documentation; NIST data feeds and reuse guidance; VulZoo ASE 2024 dataset paper; recent vulnerability timing and package/security studies. | OSV is an aggregation with source-specific terms, including some non-commercial/no-derivatives terms. NVD/NIST attribution and reuse conditions must be followed; no data downloaded or analyzed. |
 
-The query wording above is a concise reconstruction of query families used during the live screening, not a timestamped export from a scholarly database. Because the search backend returned HTTP 404 on the attempted follow-up in this step, this update adds no new hits or result counts.
+The query wording above is a concise reconstruction of query families used during the live screening, not a timestamped export from a scholarly database. The search backend returned HTTP 404 on an earlier follow-up, so that update added no new hits or result counts.
+
+### Search update (2026-11-22)
+
+A new targeted discovery search was run through the connected web search service using the following exact query families: `site:dl.acm.org SMS spam smishing dataset cross corpus evaluation 2025 2026`; `site:ieeexplore.ieee.org SMS phishing smishing dataset evaluation cross dataset 2024 2025`; `SMS spam detection UCI dataset machine learning cross corpus recent peer reviewed paper`; and `smishing detection dataset license privacy research SMS dataset 2025`. Search results were opened against publisher/conference records and an artifact repository. This was a focused search-engine discovery pass, not a database export: no reproducible hit count, complete screening, or exhaustive search is claimed.
+
+| Record checked | Evidence verified from primary page | Effect on topic choice / remaining checks |
+|---|---|---|
+| Ali et al., *MOZ-Smishing: A Benchmark Dataset for Detecting Mobile Money Frauds* (AfricaNLP 2025) | ACL Anthology confirms the paper appeared in the AfricaNLP workshop proceedings and describes crowdsourced Portuguese SMS from Mozambican mobile users with ham/smishing labels; it points to an anonymized Hugging Face dataset URL and says “open license.” | A promising domain-specific corpus lead, but the linked dataset identity, exact license, access, collection consent/ethics, documentation, and baseline results still need direct inspection before use. The paper studies LLM in-context detection, so a generic model comparison would overlap. [ACL Anthology paper](https://aclanthology.org/2025.africanlp-1.23/) |
+| Agarwal et al., *Fishing for Smishing: Understanding SMS Phishing Infrastructure and Strategies by Mining Public User Reports* (ACM IMC 2025) | The official artifact README identifies the 2025 ACM IMC paper and labels repository materials CC BY 4.0. The paper describes 27.7k collected smishing messages; its ethics appendix says the study had ethics committee approval and that raw numbers/full URLs are not shared, while text had PII removed. | Strong recent primary work and an artifact lead. Before reusing message text, inspect the actual data, repository license file, redaction quality, label construction, and terms for each underlying forum/source. The paper’s own approval does not automatically cover a new study. Infrastructure measurement, not simply classifier benchmarking, is its focus. [Paper](https://suarez-tangil.networks.imdea.org/papers/2025imc-smishing.pdf) · [artifact repository](https://github.com/reportsmishing/Smishing-Dataset-IMC25) |
+| *SMS spam detection via a systematic machine learning pipeline* (2026) | Search result from the publisher describes many feature/model combinations evaluated on the UCI SMS Spam Collection. Publisher page could not be opened during this pass (HTTP 403). | Treat as a lead until metadata and full text are checked; its described scope further cautions against presenting another UCI model comparison as a journal contribution. [Publisher record](https://www.sciencedirect.com/science/article/pii/S2307187726002063) |
+| *Building a multi-class Short Message Service dataset for smishing detection using agglomerative clustering and dataset fusion* (2026) | Search result describes MIMICS-3500 and fusion of five sources; publisher page could not be opened during this pass (HTTP 403). | Dataset construction/fusion is active. Verify the final bibliographic status, methods, component-source permissions, and release terms before any topic or data decision. [Publisher record](https://www.sciencedirect.com/science/article/pii/S0952197625028957) |
+
+**Updated inference:** the evidence strengthens the recommendation to keep the existing UCI comparison as a portfolio artifact and not expand it into a journal paper by adding models or generic cross-dataset evaluation. A possible future journal direction would need to ask a distinct question about source-authenticated, domain/language-specific smishing (for example label reliability or operational error costs), and first clear data rights, privacy/ethics, and supervisor review. No such question is selected or claimed novel at this stage.
 
 ### Closest-source appraisal (current evidence level)
 

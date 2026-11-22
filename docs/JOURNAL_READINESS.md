@@ -1,6 +1,6 @@
 # Journal Readiness and Research Direction
 
-**Review date:** 2026-11-21
+**Review date:** 2026-11-22
 
 ## Decision update: alternative-topic screen
 
@@ -29,6 +29,10 @@ Do not change topic solely because this first draft is not yet suitable for jour
 ## What the preliminary literature scan shows
 
 This is a focused first-pass scan, not a systematic review. On 2026-11-21, targeted web searches used combinations of: `SMS spam detection cross dataset evaluation dataset shift`, `SMS spam detection duplicate leakage benchmark datasets`, `SMS smishing dataset label methodology`, and `UCI SMS Spam Collection cross corpus generalization`. This search method is not exhaustive and does not establish novelty.
+
+### Search update, 2026-11-22
+
+A targeted follow-up discovery search located two directly relevant primary works: the AfricaNLP 2025 MOZ-Smishing paper, which describes crowdsourced Mozambican Portuguese SMS labeled as ham/smishing and links an anonymized dataset; and the ACM IMC 2025 *Fishing for Smishing* paper, whose authors report 27.7k collected messages and publish a CC BY 4.0 artifact repository. Their official records and the outstanding access/ethics checks are logged in [TOPIC_SCREENING_PROTOCOL.md](TOPIC_SCREENING_PROTOCOL.md). These works reinforce that adding a generic classifier benchmark or simply switching corpora is not, by itself, a defensible research contribution. The follow-up was a search-engine discovery pass; it does not constitute a systematic or exhaustive search.
 
 | Work | Relevance to this project | Consequence for the project |
 |---|---|---|
