@@ -54,6 +54,16 @@ The [ACM IMC artifact repository](https://github.com/reportsmishing/Smishing-Dat
 
 This direct source check lowers confidence that either corpus can be adopted immediately for an undergraduate journal project. It does not change the recommendation to retain the current UCI work as a portfolio artifact and not claim journal readiness.
 
+### Additional alternative-data screen, 2026-11-22
+
+Three additional public candidates were checked against official data records and recent studies; none clears both the research-gap and data-use gates:
+
+- **SECOM:** UCI states CC BY 4.0, but the 2024 *Sensors* study already compares missing-value handling, scaling, dimensionality reduction, resampling, and multiple classifiers; later work also uses train-only preprocessing. No narrower contribution was established in this screen. [UCI](https://archive.ics.uci.edu/dataset/179/secom) · [2024 paper](https://doi.org/10.3390/s24175461)
+- **AI4I 2020:** UCI states CC BY 4.0 and identifies the data as synthetic. The label-versus-failure-mode inconsistency that looked audit-worthy has already been reported, so a replication of that observation would not be a distinct contribution. [UCI](https://archive.ics.uci.edu/dataset/601/ai4i%2B2020%2B) · [2026 report](https://doi.org/10.5281/zenodo.23618340)
+- **MOZ-Smishing:** the 2025 paper already evaluates LLM in-context detection; the linked card specifies `creativeml-openrail-m` without clarifying why that model-oriented identifier governs message data, and the public preview includes transaction/OTP-like details. Data rights and residual privacy are unresolved for this project. Do not use pending author clarification and privacy review. [ACL paper](https://aclanthology.org/2025.africanlp-1.23/) · [dataset card](https://huggingface.co/datasets/MOZNLP/MOZ-Smishing)
+
+No journal topic is selected by this screen. It supports the existing recommendation: preserve the English UCI project as a portfolio study, and only start a new journal study after a supervisor-guided search identifies a specific gap and a data source that passes provenance, rights, privacy, and evaluation checks. The screening details and explicit limitations are in [TOPIC_SCREENING_PROTOCOL.md](TOPIC_SCREENING_PROTOCOL.md).
+
 ### Scholarly-index search and close-work update, 2026-11-22
 
 I queried the OpenAlex Works API using a publication-date filter from 2024-01-01 through 2026-11-22 and five title-search strings: `SMS spam detection`, `smishing detection`, `SMS phishing dataset`, `smishing dataset`, and `SMS spam cross-dataset`. OpenAlex returned 166, 100, 2, 13, and 1 records respectively; deduplicating returned records by DOI (or OpenAlex ID when DOI was absent) yielded 270 records. These are raw index hits, not eligible-study counts. I have not completed title/abstract screening of all 270 records, and OpenAlex metadata/search is not a substitute for Scopus, Web of Science, IEEE Xplore, ACM DL, or full-text appraisal. Publisher abstracts for the following two especially close works were checked; the full papers were inaccessible in this pass.
