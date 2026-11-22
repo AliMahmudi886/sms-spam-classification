@@ -1,7 +1,7 @@
 # Research Extension Proposal: Prompt-Injection Resistance in SMS Triage
 
-**Protocol version:** 0.1  
-**Status:** Candidate for a scoped pilot; novelty is not established.  
+**Protocol version:** 0.1
+**Status:** Candidate for a scoped pilot; novelty is not established.
 **Review date:** 2026-11-22
 
 ## Motivation
