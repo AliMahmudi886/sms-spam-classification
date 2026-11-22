@@ -68,7 +68,7 @@ Each successful CI job uploads the generated human-readable report and machine-r
 
 See [docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md) for platform-specific setup, generated outputs, interpretation limits, and references.
 
-The latest recorded workflow run for commit [`c415d06`](https://github.com/AliMahmudi886/sms-spam-classification/commit/c415d065d1faec4c0fc75d40f6248144b8a0d1ed) completed successfully on Ubuntu and Windows. This is evidence that the documented experiment ran in those CI environments; it is not evidence of external validity or production readiness.
+The latest recorded workflow run for commit [`0167d0d`](https://github.com/AliMahmudi886/sms-spam-classification/commit/0167d0d52f92ee98a1dac44cdd5c6e649339bd49) completed successfully on [Ubuntu and Windows](https://github.com/AliMahmudi886/sms-spam-classification/actions/runs/45000250314). GitHub Actions downloaded and checksum-verified the public dataset, reproduced the cross-validation experiment, and uploaded the report and metrics. This confirms reproducibility in those CI environments for that commit; it is not evidence of external validity or production readiness.
 
 ## Run locally
 
