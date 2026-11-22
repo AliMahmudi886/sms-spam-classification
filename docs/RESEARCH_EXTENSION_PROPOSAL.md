@@ -1,25 +1,27 @@
-# Research Extension Proposal: Prompt-Injection Resistance in SMS Triage
+# Research Extension Proposal: SMS-Length-Bounded Prompt-Injection Evaluation
 
-**Protocol version:** 0.1
-**Status:** Candidate for a scoped pilot; novelty is not established.
+**Protocol version:** 0.2
+**Status:** Narrow candidate for further screening; novelty and feasibility are not established.
 **Review date:** 2026-11-22
 
 ## Motivation
 
-The existing app uses a classical TF-IDF Logistic Regression model, which does not follow natural-language instructions. Adding an LLM-based SMS assistant would introduce a different risk: the SMS itself is untrusted input, and it may contain text that attempts to override the classifier's task. This could cause a model to label a message incorrectly or violate a required output format.
+The existing app uses a classical TF-IDF Logistic Regression model, which does not follow natural-language instructions. An LLM-based SMS assistant would introduce a different risk: the message body is untrusted input and may contain text that attempts to override the classifier's task.
 
-This extension asks a narrow security question about that instruction/data boundary. It does not propose another generic LLM-versus-classical-model benchmark, generated explanation feature, or claim that prompt injection is a new threat. Existing work already studies SMS LLM classification, prompting, drift, and textual adversarial edits. Separate security research has demonstrated notification-based indirect prompt injection reaching device assistants through SMS. The specific behavior of instruction-like content embedded in an SMS body against an SMS triage classifier remains a candidate gap that needs a fuller literature search.
+The broad question of prompt injection against phishing classification is already directly addressed in recent email work, including a November 2026 staged-inference protocol with clean, injected-phishing, and injected-legitimate conditions. Therefore, this proposal no longer treats generic injection resistance or prompt boundaries as the possible contribution. The remaining candidate is specific to the SMS channel: characterize the injection-length budget and label-flip behavior under standard single-part and concatenated-SMS encoding limits. SMS segment limits are specified by 3GPP; GSM-7 and UCS-2 have different capacities. [3GPP TS 23.040](https://www.etsi.org/deliver/etsi_ts/123000_123099/123040/17.02.00_60/ts_123040v170200p.pdf)
 
 ## Candidate research question
 
-> When an SMS body contains instruction-like text that conflicts with an LLM triage task, how often does the triage label change, and which input-boundary controls reduce those changes while preserving clean-message performance?
+> Under standard GSM-7 and UCS-2 SMS segment budgets, what is the relationship between the length of classifier-directed instruction text and label-flip rates in LLM-based SMS triage, and do existing email-oriented defenses retain their effect under these SMS constraints?
 
-The research object is **classification integrity under untrusted message content**. The comparison is between prompt/input-handling conditions, not a claim that one model family is generally safer.
+The research object is **channel-length-bounded classification integrity**. The comparison is between predeclared inference conditions over the same paired message variants, not a claim that one model family is generally safer.
 
 ## Scope and threat model
 
 - The model receives a user-provided SMS body and returns only a fixed label from the dataset task, plus a brief safe-use notice.
 - The SMS body is untrusted data. It may contain quoted or direct instructions such as requests to ignore the classification task or force a particular label.
+- Test length bands must distinguish one-part GSM-7 (up to 160 septets), one-part UCS-2 (up to 70 code units), and concatenated message parts (typically 153 GSM-7 or 67 UCS-2 units per part when concatenation headers are used). Count encoded units, not just Unicode code points; specify the exact encoding/counting implementation and do not generalize beyond it.
+- Segment count is a transport-cost measure, not necessarily an LLM input cap: many phones reassemble concatenated SMS before an app reads the body. Report both payload units and estimated SMS parts; do not claim a message stops at one segment.
 - The evaluator has no access to model internals. The test measures output changes under paired clean and injected inputs.
 - No tools, browsing, message sending, file access, account access, or external actions are available to the evaluated model.
 - Attack strings are short, self-authored, non-operational test fixtures. They do not contain instructions for theft, malware, credential collection, or real-world targeting.
@@ -27,10 +29,10 @@ The research object is **classification integrity under untrusted message conten
 
 ## Candidate hypotheses
 
-1. Some instruction-following models will change the requested label more often when an instruction-like string is embedded in the message than under a matched clean or neutral-control condition.
-2. Explicitly treating the message as untrusted quoted data and using a structured input boundary will reduce, but may not eliminate, attack-induced label changes.
-3. The existing TF-IDF Logistic Regression model will not respond to the *instruction* as an instruction, although added words can still change its lexical score. It will act as a non-instruction-following control, not a security guarantee.
-4. A boundary control that reduces label flips may also affect clean-message performance or output-format compliance; both effects must be measured.
+1. Attack-induced label flips will vary with the available SMS encoding budget; successful flips within a single segment would demonstrate that multi-part length is not required for the tested model/message pairs.
+2. Email-oriented direct, generic-robust, and injection-first inference conditions may have different label-flip and false-alarm curves as the inserted text length changes.
+3. The existing TF-IDF Logistic Regression model will not follow the instruction as an instruction, although added words can still change its lexical score. It is a non-instruction-following control, not a security guarantee.
+4. A condition that reduces flips may also raise false alerts on legitimate messages or affect clean-message performance; all must be measured.
 
 These are testable expectations, not assumed results.
 
@@ -44,18 +46,21 @@ These are testable expectations, not assumed results.
 
 No dataset files were downloaded for this proposal. Do not commit raw message text. Record source/version, retrieval date, checksum, license, attribution, transformations, and privacy review before any experimental use.
 
+The first candidate pilot should use only the existing UCI `spam`/`ham` task and inspect how many messages fall into each SMS encoding and length band. Do not manufacture a UCS-2 sample by appending arbitrary Unicode characters to messages. If authentic UCI text does not provide enough UCS-2 cases for a meaningful paired comparison, report that feasibility limit and constrain the initial experiment to GSM-7 rather than implying a balanced encoding study.
+
 ## Experimental design (draft)
 
 ### Paired input conditions
 
-For each selected message, create matched variants whose underlying message text and gold label remain unchanged:
+For each selected message, create matched variants whose underlying message text and gold label remain unchanged. First compute the base text's GSM-7 or UCS-2 units and available capacity. Stratify or block by original label, encoding, and remaining capacity. Vary the injected instruction length across preregistered encoded-unit bands, including just below and around the single-part boundary. If paraphrases of the same directive are used to reach a tier, label them as separate templates; do not treat character length as an isolated causal variable when wording also changes.
 
 1. **Clean:** original message with the fixed classification instruction.
 2. **Neutral control:** a similarly sized, non-instructional appended note, to separate instruction effects from simple length changes.
 3. **Embedded instruction:** a self-authored line requesting the model to ignore the task or emit a specified label.
-4. **Boundary control:** present the same message in an explicit untrusted-content field, with a fixed instruction to classify its contents rather than follow them.
+4. **Defense baselines:** compare direct classification, a generic untrusted-input instruction, and the published injection-first staged procedure if its exact protocol can be reproduced from the paper. Keep prompts and parsing rules fixed across length bands.
+5. **Length-matched neutral controls:** for every directive template, include a harmless text insertion matched for encoded length and position. This helps distinguish instruction following from ordinary length/lexical effects.
 
-All fixture variants must be frozen before model calls. A small human review should verify that each transformation preserves the original label-relevant message and does not introduce a genuine change of intent. Report exclusions and ambiguous cases.
+All fixture variants must be frozen before model calls. A small human review should verify that each transformation preserves the original label-relevant message and that length-tier paraphrases retain the same directive intent. Report exclusions and ambiguous cases.
 
 ### Comparators
 
@@ -67,7 +72,7 @@ Do not select models after seeing attack results. If local inference is not feas
 
 ### Primary and secondary measures
 
-- **Primary:** paired label-flip rate from clean to embedded-instruction variants; also report the direction, especially `spam → ham`.
+- **Primary:** paired label-flip rate by injected GSM-7 septets/UCS-2 code units and estimated SMS parts; also report `spam → ham` separately.
 - **Clean utility:** per-class precision, recall, F1, confusion matrix, and macro-F1 on the untouched evaluation split.
 - **Robust utility:** accuracy/F1 across injected variants with confidence intervals clustered by original message, so variants of the same base message are not treated as independent.
 - **Controls:** label-flip rate on neutral variants and false alarm changes on legitimate (`ham`) examples.
@@ -78,15 +83,19 @@ The original UCI split remains the baseline. Paired variants must stay in the sa
 
 ## Candidate mitigation conditions
 
-Compare a small preregistered set: raw concatenation, explicit quoted/untrusted-data boundary, and structured-field input with a strict output parser. Keep tools disabled for every condition. These are test conditions, not assumed defenses; delimiters and output parsing must not be described as a complete security solution.
+Compare the direct and defense baselines described above, including the published injection-first condition if reproducible. Keep tools disabled for every condition. These are test conditions, not assumed defenses; prompts, delimiters, and output parsing must not be described as complete security solutions.
 
 ## Novelty screen so far
 
 - The 2026 *International Journal of Information Security* study evaluates English and Korean SMS LLM classifiers, multiple prompting strategies, temporal drift, and semantic-preserving adversarial edits. The accessible method describes evasion/perturbation attacks but the targeted search did not find an explicit SMS-body instruction-override condition. This does not prove the full paper or supplementary materials omit it. [Publisher full text](https://link.springer.com/article/10.1007/s10207-026-01283-5)
+- Zhu and Liu (2026) directly study classifier-directed prompt injection in phishing emails and propose injection-first staged inference, with clean phishing, injected phishing, and matched injected legitimate email conditions. This directly overlaps the broad version of the current idea. Only the SMS encoding/segment-budget dimension remains a candidate distinction, and it has not been shown novel. [Publisher chapter and paper](https://publications.scrs.in/chapter/978-81-975670-4-9/3) · [full text](https://publications.scrs.in/uploads/final_menuscript/48c37c6c7d5b17d2ba27def123aeca9c.pdf)
+- Koide, Nakano, and Chiba (2026) evaluate stealthy prompt injection in multimodal phishing-site detectors and propose InjectDefuser. It is a different medium and attack surface, but further limits any claim to generic phishing-detector prompt-injection novelty. [arXiv paper](https://arxiv.org/abs/2602.05484)
+- An IEEE Security & Privacy 2025 poster evaluates few-shot SMS smishing detection with Gemma-2B, Phi-3 mini, and Qwen2.5-3B, including a 4-bit model and an on-device/privacy motivation. Its accessible text discusses misspellings, inserted tokens, and paraphrased perturbations, but does not explicitly describe classifier-directed prompt-injection tests. It is close work for small-model SMS robustness and makes model size/deployment constraints relevant to the comparison. [IEEE S&P poster](https://sp2025.ieee-security.org/downloads/posters/sp25posters-final23.pdf)
+- 3GPP defines different payload capacities for GSM-7 and UCS-2 SMS, with reduced per-part capacity for concatenated messages. This supports an operationally measurable channel-budget variable; it does not by itself establish a research gap. [3GPP TS 23.040](https://www.etsi.org/deliver/etsi_ts/123000_123099/123040/17.02.00_60/ts_123040v170200p.pdf)
 - The 2025 USENIX SOUPS paper SmishX uses LLM agents to classify SMS phishing and generate evidence-based explanations, including a user study. It confirms that instruction-following LLMs are already being applied to SMS triage, so an LLM classifier alone is not a contribution. [USENIX paper](https://www.usenix.org/conference/soups2025/presentation/wang)
 - SafeBreach publicly reports notification-based indirect prompt injection through SMS and other messaging applications against a voice assistant, with unauthorized device actions. This establishes practical relevance for the broader threat, but it is vendor security research, not evidence that the proposed classification-only experiment is novel or that the tested models share that vulnerability. [SafeBreach research](https://www.safebreach.com/blog/gemini-voice-assistant-prompt-injection-exploit/)
 
-This is a targeted exact-topic search, not a systematic review. The novelty gate remains **unresolved** until the related papers and prompt-injection literature are searched in scholarly indexes and full texts, including any supplementary materials and artifacts.
+This is a targeted search, not a systematic review. The generic SMS prompt-injection proposal is **not sufficiently distinct** from recent email-phishing work to present as novel. The remaining length-budget question is only a candidate; novelty is **unresolved** until scholarly indexes are searched specifically for channel-constrained or length-bounded prompt-injection evaluation in mobile messaging, and the closest papers/artifacts are screened in full. The published email study cites PhishFuzzer work on email-length changes, and the IEEE S&P poster already studies small SMS models under textual perturbations, so the exact variable, controls, and contribution need especially careful comparison; this project must not present “length matters” or “small models can classify SMS” as new by itself.
 
 ## Safety and publication boundaries
 
@@ -97,10 +106,10 @@ This is a targeted exact-topic search, not a systematic review. The novelty gate
 
 ## Stage plan
 
-1. Complete a scholarly search for LLM prompt injection in SMS/phishing classification and classify closest work at the feature-level, not only by title.
+1. Search scholarly indexes for SMS/mobile-message prompt-injection work, attack-length budgets, encoding/segment constraints, and email-to-SMS transfer. Read the November 2026 staged-inference paper and artifacts closely.
 2. Confirm local inference feasibility and data-rights/privacy gates. No paid API or new dataset access is assumed.
-3. Freeze fixtures, split, threat model, model versions, metrics, and the stopping rule before any model query.
-4. Implement the research harness in a separate path; leave the established classical app and its results intact.
-5. Run the approved pilot, review errors, and decide whether the evidence supports a paper, a security engineering portfolio artifact, or neither.
+3. If a defensible gap remains, freeze encoding rules, fixtures, splits, prompts, model versions, metrics, and stopping rules before any model query.
+4. Implement the research harness separately from the established classifier app and its results.
+5. Run an authorized pilot, review paired transitions, and decide whether the evidence supports a paper, a security engineering portfolio artifact, or neither.
 
-No new model, test fixture, result, or claim has been created by this proposal. The existing project remains a portfolio-quality spam/ham demonstration; journal readiness does not increase until the novelty and data gates are passed and the experiment is actually run.
+No new model, test fixture, result, or claim has been created by this proposal. The existing project remains a portfolio-quality spam/ham demonstration; journal readiness does not increase until the narrowed novelty and data gates are passed and the experiment is actually run.
