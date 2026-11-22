@@ -42,6 +42,17 @@ The [ACM IMC artifact repository](https://github.com/reportsmishing/Smishing-Dat
 
 This direct source check lowers confidence that either corpus can be adopted immediately for an undergraduate journal project. It does not change the recommendation to retain the current UCI work as a portfolio artifact and not claim journal readiness.
 
+### Scholarly-index search and close-work update, 2026-11-22
+
+I queried the OpenAlex Works API using a publication-date filter from 2024-01-01 through 2026-11-22 and five title-search strings: `SMS spam detection`, `smishing detection`, `SMS phishing dataset`, `smishing dataset`, and `SMS spam cross-dataset`. OpenAlex returned 166, 100, 2, 13, and 1 records respectively; deduplicating returned records by DOI (or OpenAlex ID when DOI was absent) yielded 270 records. These are raw index hits, not eligible-study counts. I have not completed title/abstract screening of all 270 records, and OpenAlex metadata/search is not a substitute for Scopus, Web of Science, IEEE Xplore, ACM DL, or full-text appraisal. Publisher abstracts for the following two especially close works were checked; the full papers were inaccessible in this pass.
+
+| Close work | Evidence from publisher abstract/record | Implication for this manuscript |
+|---|---|---|
+| Keshavamurthy et al. (2026), *A Multi-Dataset Evaluation of Classical ML for SMS Spam Detection* | IEEE Xplore describes UCI plus modern smishing datasets, Multinomial Naive Bayes/SVM/Logistic Regression, three feature representations, and performance deterioration across datasets. [IEEE record](https://ieeexplore.ieee.org/abstract/document/11708017/) | A generic extension from UCI-only evaluation to cross-dataset classical-model comparison is already directly addressed. The full protocol, data identities, and analysis remain to be checked before any finer distinction is proposed. |
+| Babu et al. (2026), *Smishing Detection Beyond English Benchmarks* | IEEE Access lists publication date 2026-11-02. Its abstract describes a 169-record evidence base with 48 directly relevant SMS studies and a dataset audit; it reports duplicate-aware splitting and UCI source-overlap findings. [IEEE record](https://ieeexplore.ieee.org/abstract/document/11769872) | A broad review, duplicate audit, or generic benchmark-quality contribution now has particularly close prior work. Its full methods and appendices must be appraised before asserting any narrower gap. |
+
+The API query strings and counts make this search pass reproducible, but screening is unfinished. The journal-readiness estimate therefore remains 20%; no paper submission decision or novelty claim is justified by this search alone.
+
 | Work | Relevance to this project | Consequence for the project |
 |---|---|---|
 | Almeida & Hidalgo (2011), UCI SMS Spam Collection | The source benchmark used here; it has 5,574 labeled English messages and `spam`/`ham` classes. [UCI record](https://archive.ics.uci.edu/dataset/228/sms%2Bspam%2Bcollection) | A repeated comparison on this corpus should be presented as a baseline replication unless it adds a clearly differentiated analysis. |
