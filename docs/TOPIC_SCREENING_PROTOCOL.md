@@ -126,6 +126,18 @@ A focused search examined whether software composition analysis (SCA) or softwar
 
 **Screening outcome:** reject a generic “compare vulnerability/SBOM scanners” question as the next journal direction. The field is feasible for a software project, but closely matching benchmark studies already exist. A narrower question could only be reconsidered after a search for a precise, non-overlapping claim and an artifact-by-artifact data-rights review. This is a provisional topic screen, not evidence that all software supply-chain questions are exhausted.
 
+### Lockfile-parser robustness screen (2026-11-22)
+
+The follow-up considered a narrower, controlled question: *When package-manager-generated lockfiles encode the same dependency inventory in different supported format versions or equivalent layouts, do scanners recover the same package names, versions, and vulnerability findings?* The proposed input would be synthetic, minimal fixtures created for the study; no real project or package archive is needed for an initial parser-only phase.
+
+| Evidence | Relevance and boundary |
+|---|---|
+| OSV-Scanner's official supported-file documentation says lockfile extraction is implemented in OSV-Scalibr, distinguishes resolved lockfiles from manifests, and warns that manifest versions are extracted on a best-effort basis and may differ from installed versions. | Establishes a concrete technical motivation and a documented boundary for a controlled extraction study. [OSV-Scanner documentation](https://github.com/google/osv-scanner/blob/main/docs/supported_languages_and_lockfiles.md) |
+| OWASP CVE Lite CLI's parser coverage documentation lists supported lockfile formats and describes version-specific pnpm parsing errors in earlier releases, including cases where package entries were dropped or peer suffixes caused missed findings. | Shows that parser-version edge cases are real and already documented by a current project; a study must not simply repackage these known cases as novel. [Parser coverage](https://owasp.github.io/cve-lite-cli/docs/parser-coverage) |
+| DSN 2024's SBOM-generator study includes parser-confusion analysis; the 2026 IJCRT paper page describes fixed-input, controlled scanner comparisons after historical advisory-rule changes. The latter's own site labels it peer reviewed, but this pass did not independently verify its review process or reproduce its experiments. | Parser ambiguity and controlled scanner-output sensitivity are already adjacent work. The 2026 paper changes advisory source state rather than lockfile encoding, so it is proximity evidence, not an exact duplicate of the candidate question. [DSN 2024 paper](https://www.cs.ucr.edu/~heng/pubs/sbom-dsn24.pdf) · [2026 article](https://ijcrt.org/fulltext.php?paper=IJCRT2611450) |
+
+**Provisional assessment:** this is more specific and more manageable than a general scanner benchmark, with a synthetic-fixture route that avoids third-party dataset licensing for the input fixtures. It is not selected as a journal question: novelty is unresolved, and the first-pass search found known cases plus adjacent controlled studies. If retained as a practical portfolio direction, the initial study should be restricted to package inventory extraction and explicitly labeled a reproducibility/robustness audit; expanding to vulnerability findings requires pinned advisory snapshots and documented source terms. No code, fixture, or experiment was created in this screen.
+
 ### Closest-source appraisal (current evidence level)
 
 | Source | Type/status | What it studies (based on accessible record/text) | Relevance and boundary |
