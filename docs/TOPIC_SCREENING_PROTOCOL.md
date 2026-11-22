@@ -138,6 +138,27 @@ The follow-up considered a narrower, controlled question: *When package-manager-
 
 **Provisional assessment:** this is more specific and more manageable than a general scanner benchmark, with a synthetic-fixture route that avoids third-party dataset licensing for the input fixtures. It is not selected as a journal question: novelty is unresolved, and the first-pass search found known cases plus adjacent controlled studies. If retained as a practical portfolio direction, the initial study should be restricted to package inventory extraction and explicitly labeled a reproducibility/robustness audit; expanding to vulnerability findings requires pinned advisory snapshots and documented source terms. No code, fixture, or experiment was created in this screen.
 
+### Focused candidate refinement (2026-11-22)
+
+Further primary-source checks found a concrete, narrower case and sharpened the project boundary:
+
+- The pnpm issue tracker documents a two-document `pnpm-lock.yaml` emitted by pnpm 12 while both documents still declare lockfile version `9.0`. The report says single-document consumers can fail or read only the environment document and report zero dependencies; it describes Dependabot alerts auto-closing in the reporting repository. This is a maintainer issue report, not an independently reproduced result in this project. [pnpm issue #13805](https://github.com/pnpm/pnpm/issues/13805)
+- The official pnpm page currently documents the lockfile format and describes the new v13 format as planned/experimental; this is a moving implementation detail, so any future experiment must pin exact package-manager versions and preserve generated fixture hashes. [pnpm lockfile settings](https://github.com/pnpm/pnpm/blob/main/pnpm/docs/settings/store.md)
+- Gamage et al.'s *The Design Space of Lockfiles Across Package Managers* is listed by arXiv as published in *Empirical Software Engineering* (2026). It studies lockfile designs across seven managers and developer experience, rather than scanner behavior on pnpm's multi-document case. [arXiv record](https://arxiv.org/abs/2505.04834)
+
+**Candidate question for a practical audit:** *For a minimal dependency graph, which selected open-source inventory/scanning tools recover the expected package coordinates from a pnpm single-document lockfile and a pnpm 12 two-document lockfile, and which failures are silent versus explicit?*
+
+**Pre-registered-style plan (proposal only):**
+
+1. **Scope:** npm ecosystem only; compare one pinned single-document control with one pinned pnpm 12 two-document fixture. Use the public reproduction shape from the pnpm issue (`is-odd@3.0.1` plus its dependency) only after confirming the exact generated graph. Do not evaluate exploit behavior or claim production-wide vulnerability accuracy.
+2. **Ground truth:** package coordinates from the package-manager-resolved fixture, independently checked against the root manifest and lockfile graph. Pin the package-manager and scanner versions and save input/output hashes. npm identifies the `is-odd` and `is-number` packages as MIT-licensed, but the exact resolved version and its license must be rechecked before producing a fixed fixture. Do not redistribute package archives. [is-odd record](https://www.npmjs.com/package/is-odd) · [is-number record](https://www.npmjs.com/package/is-number)
+3. **Comparison:** at least two open-source tools that expose machine-readable inventories; include parse-error, nonzero exit, empty-but-successful, partial, and exact-match outcomes. Select tool/version pairs only after confirming their supported input and output formats.
+4. **Null hypothesis:** each tool returns the same expected package-coordinate set for both semantically equivalent lockfile fixtures. **Alternative:** at least one tool returns a missing/extra coordinate, explicit parse failure, or silently empty/partial inventory for the two-document fixture.
+5. **Measures:** package-coordinate precision/recall against the fixture ground truth, exact-set match, missing and extra package counts, tool exit status, and silent-incompleteness indicator. These measure inventory extraction only; do not report vulnerability precision/recall or F1 without a separate fixed advisory truth set.
+6. **Interpretation limits:** two fixtures and a small tool sample support a bounded case study only. They do not estimate prevalence across all lockfiles, managers, scanners, or repositories. A simple guard may be assessed as an engineering mitigation, but its warning behavior must be reported separately from scanner correctness.
+
+**Topic gate:** the case is reproducible and likely useful as a software-engineering portfolio artifact, but the core failure is already publicly reported and the broader parser-confusion/benchmark area has prior work. Do not claim novelty or journal suitability from this case study alone. Before implementation, one more focused search must compare this exact pnpm scenario with the 2024 SBOM benchmark, current scanner tests/issues, and any newly published empirical study. No code, fixtures, packages, or vulnerability data have been downloaded or created.
+
 ### Closest-source appraisal (current evidence level)
 
 | Source | Type/status | What it studies (based on accessible record/text) | Relevance and boundary |
