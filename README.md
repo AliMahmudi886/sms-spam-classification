@@ -13,6 +13,7 @@ A reproducible text-classification study and local Streamlit demo for labeling E
 - Two classical text models: Multinomial Naive Bayes and Logistic Regression with TF-IDF word unigrams and bigrams.
 - Stratified five-fold cross-validation, out-of-fold metrics, fold-level variation, and confusion matrices.
 - A small local app for entering a message and viewing a model prediction with clear limitations.
+- An estimated GSM-7/UCS-2 SMS length and segment count in the app; this describes transport size, not message risk.
 - A linear TF-IDF feature contribution view and a concise [Model Card](docs/MODEL_CARD.md) describing intended use and limitations.
 - An academic-style [manuscript draft](docs/PAPER_DRAFT.md) and candid [journal-readiness assessment](docs/JOURNAL_READINESS.md).
 - A clearly labeled [research-extension proposal](docs/RESEARCH_EXTENSION_PROPOSAL.md) for a candidate SMS-length-bounded prompt-injection evaluation; this is not a reported experiment or novelty claim.
@@ -109,6 +110,7 @@ app.py                     Streamlit message classifier
 Dockerfile                 Container image and local app startup
 .dockerignore              Keep local data and environments out of image builds
 src/pipeline.py            Data loading, duplicate handling, models, metrics
+src/sms_encoding.py        GSM-7/UCS-2 SMS length and segment estimate
 src/train.py               Five-fold evaluation, final demo-model fit, report generation
 scripts/download_data.py   Download and verify the official UCI data file
 requirements.lock          Exact environment used for the reported experiment

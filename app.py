@@ -9,6 +9,7 @@ import joblib
 import streamlit as st
 
 from src.pipeline import logistic_feature_contributions
+from src.sms_encoding import estimate_sms_length
 
 
 ROOT = Path(__file__).resolve().parent
@@ -52,6 +53,13 @@ with st.form("message_classifier"):
         placeholder="Paste an English SMS message here…",
         help="The project is designed to run locally. Do not paste private messages into a publicly hosted instance.",
     )
+    if message:
+        length_estimate = estimate_sms_length(message)
+        st.caption(
+            f"Estimated SMS transport: {length_estimate.units} {length_estimate.unit_name} "
+            f"({length_estimate.encoding}), about {length_estimate.segments} segment(s). "
+            "Carrier and handset behavior can vary. This is a length estimate, not a risk score."
+        )
     submitted = st.form_submit_button("Classify message", type="primary")
 
 if submitted and not message.strip():

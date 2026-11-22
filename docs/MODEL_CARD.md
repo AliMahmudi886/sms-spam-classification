@@ -9,6 +9,7 @@ This repository contains an educational text-classification study and a local de
 - Learn and demonstrate a reproducible classical machine-learning workflow.
 - Explore how a fixed rule baseline, Multinomial Naive Bayes, and Logistic Regression compare on the documented corpus.
 - Try a local prediction on English text, with model scores and linear feature contributions presented as limited inspection aids.
+- View a standards-based estimate of SMS encoding units and message segments. This is a transport-size estimate, not a model feature or spam/scam risk signal; carriers and devices may differ.
 
 The model is not a security product and must not be the sole basis for deciding whether to trust a message, link, sender, or request.
 
