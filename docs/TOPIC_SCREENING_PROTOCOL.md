@@ -113,6 +113,19 @@ This was a focused screen of three publicly documented non-personal or research-
 
 **Screening outcome:** these checks did not identify a journal-ready alternative. Continue to treat the English SMS repository as a portfolio project; do not infer that the most convenient licensed dataset automatically supplies a publishable contribution. A journal direction remains unselected pending a narrower question, primary-literature appraisal, and supervisor feedback. No new data were retrieved, and no experiment was run.
 
+### Software supply-chain candidate screen (2026-11-22)
+
+A focused search examined whether software composition analysis (SCA) or software bill of materials (SBOM) quality could provide a feasible alternative. No project data or repositories were downloaded.
+
+| Evidence | What it establishes | Implication |
+|---|---|---|
+| *On the Correctness of Metadata-Based SBOM Generation* (DSN 2024) | The paper compares four SBOM generators across 7,876 open-source projects, reports inconsistencies and omissions, and proposes a benchmark and parser-confusion attack. | Generic correctness/completeness comparisons among SBOM generators are already directly addressed. [Paper](https://www.cs.ucr.edu/~heng/pubs/sbom-dsn24.pdf) |
+| Nokia/Metropolia SBOM-QA | The public project describes an SCA/SBOM benchmark across C/C++, Java, Python, Node, Go, and containers. GitHub identifies the repository license as BSD-3-Clause. Its test targets and reference SBOMs point to separate upstream projects, so the repository license alone should not be taken as a blanket license for all referenced software. | A public, reusable benchmark lead exists, but evaluating tool coverage, false positives, and metadata quality would overlap its stated purpose; upstream artifacts would require source-specific review. [Repository](https://github.com/nokia-steward/SBOM-QA) |
+| *Wild SBOMs* (MSR 2025) | The paper releases 78,612 deduplicated SBOM files from public version-control sources and explicitly names SBOM quality analysis and tool benchmarking as use cases. The paper calls the release open data, but this screen did not verify one blanket license for every embedded SBOM and its referenced project. | A large-scale analysis of real-world SBOM quality or benchmarking is already an established direction, with per-artifact provenance and terms to check. [Paper](https://upsilon.cc/~zack/research/publications/msr-2025-sbom-dataset.pdf) |
+| *A Ground-Truth-Based Evaluation of Vulnerability Detection Across Multiple Ecosystems* (2026) | The arXiv record labels the manuscript not peer-reviewed. It provides a reproducible OSV-derived benchmark and evaluates vulnerability detection across Maven, npm, NuGet, and PyPI. | Generic cross-ecosystem scanner comparison is directly occupied, even though this specific study is currently a preprint. Its OSV-derived artifact does not remove the need to check upstream data terms for a new reuse. [Preprint](https://arxiv.org/abs/2604.21111) · [tool artifact](https://doi.org/10.5281/zenodo.19697250) · [dataset artifact](https://doi.org/10.5281/zenodo.19696658) |
+
+**Screening outcome:** reject a generic “compare vulnerability/SBOM scanners” question as the next journal direction. The field is feasible for a software project, but closely matching benchmark studies already exist. A narrower question could only be reconsidered after a search for a precise, non-overlapping claim and an artifact-by-artifact data-rights review. This is a provisional topic screen, not evidence that all software supply-chain questions are exhausted.
+
 ### Closest-source appraisal (current evidence level)
 
 | Source | Type/status | What it studies (based on accessible record/text) | Relevance and boundary |
