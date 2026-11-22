@@ -159,6 +159,16 @@ Further primary-source checks found a concrete, narrower case and sharpened the 
 
 **Topic gate:** the case is reproducible and likely useful as a software-engineering portfolio artifact, but the core failure is already publicly reported and the broader parser-confusion/benchmark area has prior work. Do not claim novelty or journal suitability from this case study alone. Before implementation, one more focused search must compare this exact pnpm scenario with the 2024 SBOM benchmark, current scanner tests/issues, and any newly published empirical study. No code, fixtures, packages, or vulnerability data have been downloaded or created.
 
+### Exact-match follow-up (2026-11-22)
+
+The required focused search was completed using exact queries for the two-document pnpm lockfile, `lockfileVersion: 9.0`, pnpm 12, and the named tools OSV-Scanner, Syft, and Trivy. It located:
+
+- pnpm's official supply-chain guidance explicitly warns that a scanner reading only the first YAML document can report no dependencies and no vulnerabilities without failing. [Official pnpm guidance](https://github.com/pnpm/pnpm.io/blob/main/docs/supply-chain-security.md)
+- The pnpm issue report already identifies the affected behavior in Dependabot, OSV-Scanner, and Syft, and says Trivy and `pnpm audit` worked in the reporter's reproduction. This is a maintainer issue and user reproduction, not a peer-reviewed cross-tool study, and its present-day tool-version coverage is unverified. [Issue #13805](https://github.com/pnpm/pnpm/issues/13805)
+- A separate 2024 GitLab issue documents an earlier lockfile v9 parser failure, this time as an explicit unsupported-version error rather than silent empty inventory. [GitLab issue #461454](https://gitlab.com/gitlab-org/gitlab/-/issues/461454)
+
+**Updated decision:** the candidate question “which tools fail on pnpm 12's two-document lockfile?” is already substantially answered by public project guidance and issue reports. Reclassify it as a useful reproduction/compatibility exercise, not a journal topic. A version-pinned regression audit might add engineering value, but this search has not shown that it adds publishable evidence beyond those reports. Do not implement it in the SMS repository or claim a novelty gap. The broader Persian RTL/BiDi direction remains a separate lead; its exact question and ethics/feasibility requirements would need an independent screen.
+
 ### Closest-source appraisal (current evidence level)
 
 | Source | Type/status | What it studies (based on accessible record/text) | Relevance and boundary |
