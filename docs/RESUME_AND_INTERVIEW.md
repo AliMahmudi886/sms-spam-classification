@@ -2,7 +2,7 @@
 
 ## Resume bullet
 
-Built a reproducible English SMS spam classification study and Streamlit demo using the UCI SMS Spam Collection; compared a transparent rule baseline with Multinomial Naive Bayes and Logistic Regression using stratified five-fold cross-validation, out-of-fold precision/recall/F1, fold-level variation, and confusion matrices. Added a model card and an inspectable linear TF-IDF feature-contribution view. Logistic Regression reached pooled out-of-fold spam precision 0.998, recall 0.677, and F1 0.807; mean fold F1 was 0.806 ± 0.020. See [reports/RESULTS.md](../reports/RESULTS.md) for the full method and limits.
+Built a reproducible English SMS spam classification study and Streamlit demo using the UCI SMS Spam Collection; compared a transparent rule baseline with Multinomial Naive Bayes and Logistic Regression using stratified five-fold cross-validation, out-of-fold precision/recall/F1, fold-level variation, and confusion matrices. Added a model card, an inspectable linear TF-IDF feature-contribution view, and a GitHub Actions workflow that reproduces the experiment on Ubuntu and Windows. Logistic Regression reached pooled out-of-fold spam precision 0.998, recall 0.677, and F1 0.807; mean fold F1 was 0.806 ± 0.020. The app was manually checked with one synthetic example. See [reports/RESULTS.md](../reports/RESULTS.md) for the full method and limits.
 
 ## Short interview explanation
 

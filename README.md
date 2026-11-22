@@ -68,6 +68,8 @@ Each successful CI job uploads the generated human-readable report and machine-r
 
 See [docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md) for platform-specific setup, generated outputs, interpretation limits, and references.
 
+The latest recorded workflow run for commit [`c415d06`](https://github.com/AliMahmudi886/sms-spam-classification/commit/c415d065d1faec4c0fc75d40f6248144b8a0d1ed) completed successfully on Ubuntu and Windows. This is evidence that the documented experiment ran in those CI environments; it is not evidence of external validity or production readiness.
+
 ## Run locally
 
 Requires Python 3.10 or newer.
@@ -126,6 +128,8 @@ DATASET.md                 Citation, license, provenance, and inspection record
 - The app displays a model probability that has not been calibrated; it can be wrong.
 - A message predicted as `ham` can still be dangerous. Verify suspicious requests through official channels.
 - Results are educational research estimates, not a deployed security service.
+
+The Streamlit interface was also manually reviewed locally with one synthetic example. This was a basic interface check, not a systematic usability study or software test suite.
 
 ## Resume wording
 
