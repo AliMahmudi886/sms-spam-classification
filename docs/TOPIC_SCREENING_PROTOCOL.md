@@ -6,6 +6,20 @@
 
 ## Scope
 
+### Focused evidence screen for the GSM-7 question (2026-11-23)
+
+Include primary studies if they evaluate SMS text classification or a defense on an SMS classification task. Mark studies as directly relevant to the length question only when they report both an explicit encoded input length measure and classification outcomes by length. Retain broader SMS robustness and explanation studies as context. Exclude email-only and web-only evaluations from direct evidence. Record inaccessible methods as unresolved. Group preprints and proceedings versions of the same work under one study.
+
+This pass used a focused literature search for `SMS spam classification prompt injection UniGuardian Asif GSM-7 length SmishX` and checked venue records. The following were selected for their relevance. This is a targeted screen with incomplete coverage.
+
+| Study | Decision | Reason |
+|---|---|---|
+| [UniGuardian](https://aclanthology.org/2026.findings-aacl.119/) | Include as related defensive evidence | The earlier full-text review identified an SMS Spam task. The defense detects manipulated inputs. Its detection metrics address a different outcome from spam classification accuracy by encoded length. |
+| [Asif preprint](https://doi.org/10.5281/zenodo.21939849) | Retain from prior review, access unresolved in this pass | The prior author-copy review identified a direct SMS classifier comparison. The DOI could not be reopened in this pass, so detailed length coverage was not reassessed. |
+| [SmishX](https://www.usenix.org/conference/soups2025/presentation/wang) | Include as contextual evidence | The venue record identifies short texts and missing context as a detection challenge and evaluates a system that supplies external context. |
+
+**Decision.** The reviewed evidence does not justify treating GSM-7 length as a distinct journal contribution. Keep the earlier proposal as a research record. A practical defensive follow-up is to characterize how the existing classifier performs on naturally short and long messages, with per-class support and uncertainty reported for each length band. Its value would be a documented error analysis on this corpus. A journal claim would require a separate assessment of prior work and external validity.
+
 The screen is limited to applied computer science topics that can be implemented and evaluated by one undergraduate researcher with ordinary computing resources. Initial areas are SMS spam/smishing, Persian/RTL interfaces and accessibility, software defect prediction, phishing URL detection, and vulnerability/software-supply-chain analysis. These are candidate areas, not preselected topics.
 
 ## Questions for each candidate
