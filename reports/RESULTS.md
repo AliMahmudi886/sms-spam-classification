@@ -67,6 +67,18 @@ Among these methods, Logistic Regression had the highest pooled out-of-fold F1 (
 
 The fold mean and standard deviation show how scores varied across these five folds; they are not confidence intervals. Pooled out-of-fold metrics summarize predictions made on messages excluded from the corresponding fold's training data. After evaluation, the Logistic Regression pipeline was fit on all unique messages for the local demo. The corpus is historical, English-only, and labeled spam/ham rather than verified scam/fraud. Cross-validation on this corpus does not establish performance on newer messages, other languages, or real-world deployment.
 
+## Supplementary error analysis by message length
+
+The Logistic Regression pipeline was refit within each of the original five stratified folds (seed 42). Predictions were pooled for messages held out from their respective training folds. Length is measured on the original message text in Unicode code points, including spaces and punctuation. The descriptive bands were fixed before inspecting subgroup predictions. Reproduce this analysis from the repository root with `python -m scripts.audit_length_errors` after setting up the documented environment and dataset.
+
+| Length in code points | Ham | Spam | False positives | False negatives | Spam recall | Recall range across folds |
+|---|---:|---:|---:|---:|---:|---:|
+| Short (0–80) | 3,143 | 47 | 1 | 33 | 29.8% | 20.0%–41.7% |
+| Medium (81–160) | 1,183 | 553 | 0 | 164 | 70.3% | 69.4%–72.2% |
+| Long (161+) | 192 | 53 | 0 | 14 | 73.6% | 37.5%–92.9% |
+
+Short messages had the lowest recall. Medium messages accounted for the most missed spam (164 of 211) because they contained 553 of the 653 spam examples. The long band contained 53 spam examples and its recall varied substantially across folds. The ranges describe observed fold variation. Confidence intervals and causal effects of length are outside the scope of this analysis. Differences may also reflect vocabulary and message source. The pooled confusion counts (4,517 true negatives, 1 false positive, 211 false negatives, 442 true positives) match the main evaluation.
+
 ## References
 
 Almeida, T. & Hidalgo, J. (2011). *SMS Spam Collection* [Dataset]. UCI Machine Learning Repository. <https://doi.org/10.24432/C5CC84>.
